@@ -40,7 +40,7 @@ loads a live one from microlink.io.
 |---|---|
 | `lib/portfolio.json` | Portfolio sites (name + url) |
 | `lib/i18n.ts` | All page wording, English + Arabic |
-| `lib/content.ts` | Shared data: links, prices, testimonial numbers/testimonial/FAQ data, cube tunables (`MOTION_CONFIG`) |
+| `lib/content.ts` | Shared data: contact links, prices, testimonial numbers, cube tunables (`MOTION_CONFIG`) |
 | `app/globals.css` | Design tokens (`:root`) and all styles |
 | `app/(en)`, `app/(ar)/ar` | The two pages; each sets `<html lang dir>` via `components/SiteLayout.tsx` |
 | `components/sections/*` | One file per page section (server components) |
