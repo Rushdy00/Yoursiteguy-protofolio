@@ -1,0 +1,55 @@
+# Keeps portfolio screenshots in public/shots/ in sync with lib/portfolio.json.
+# - On push that changes the portfolio list: captures any new sites.
+# - Weekly (and on demand from the Actions tab): re-captures every site so images stay current.
+name: Portfolio screenshots
+
+on:
+  push:
+    branches: [main]
+    paths: ["lib/portfolio.json", "scripts/screenshots.mjs"]
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: screenshots
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Capture screenshots
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            npm run shots -- --missing
+          else
+            npm run shots
+          fi
+
+      - name: Commit changes
+        run: |
+          git add public/shots
+          if git diff --cached --quiet; then
+            echo "No screenshot changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update portfolio screenshots"
+          git pull --rebase
+          git push

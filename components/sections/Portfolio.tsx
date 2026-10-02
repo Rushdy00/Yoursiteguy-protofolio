@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { PORTFOLIO_COL_A, PORTFOLIO_COL_B, type PortfolioItem } from "@/lib/content";
+import { imageFor, PORTFOLIO, type PortfolioItem } from "@/lib/portfolio";
 import { Accent, PillLabel } from "../ui";
 
 function Card({ item }: { item: PortfolioItem }) {
   return (
     <a href={item.url} target="_blank" rel="noopener noreferrer" data-rv="" data-pc="" className="pcard">
-      <img src={`/img/${item.img}`} alt={`${item.name} website`} loading="lazy" decoding="async" />
+      <img src={imageFor(item)} alt={`${item.name} website`} loading="lazy" decoding="async" />
       <span className="pcard-shade" aria-hidden="true" />
       <span className="pcard-name mono">{item.name}</span>
       <span className="pcard-arrow" aria-hidden="true">
@@ -15,7 +15,13 @@ function Card({ item }: { item: PortfolioItem }) {
   );
 }
 
+const WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
+
 export default function Portfolio() {
+  // Alternate items between the two parallax columns.
+  const colA = PORTFOLIO.filter((_, i) => i % 2 === 0);
+  const colB = PORTFOLIO.filter((_, i) => i % 2 === 1);
+  const count = WORDS[PORTFOLIO.length] ?? String(PORTFOLIO.length);
   return (
     <section id="portfolio" className="section">
       <div className="wrap" style={{ maxWidth: 1400 }}>
@@ -26,7 +32,7 @@ export default function Portfolio() {
           </h2>
           <div data-rv="" style={{ maxWidth: "46ch" }}>
             <p className="lede" style={{ margin: "0 0 22px" }}>
-              Nine builds, one pattern: strip the friction, sharpen the offer, let the design carry the argument. Every
+              {count} builds, one pattern: strip the friction, sharpen the offer, let the design carry the argument. Every
               site below shipped inside two weeks.
             </p>
             <a href="#portfolio" className="explore mono">
@@ -39,12 +45,12 @@ export default function Portfolio() {
         </div>
         <div className="pgrid">
           <div id="pcol-a" className="pcol">
-            {PORTFOLIO_COL_A.map((p) => (
+            {colA.map((p) => (
               <Card key={p.url} item={p} />
             ))}
           </div>
           <div id="pcol-b" className="pcol pcol-b">
-            {PORTFOLIO_COL_B.map((p) => (
+            {colB.map((p) => (
               <Card key={p.url} item={p} />
             ))}
           </div>

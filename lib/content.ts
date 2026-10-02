@@ -14,23 +14,6 @@ export const NAV_LINKS = [
   { href: "#faq", label: "FAQ" },
 ];
 
-export type PortfolioItem = { name: string; url: string; img: string };
-
-export const PORTFOLIO_COL_A: PortfolioItem[] = [
-  { name: "Leil Official", url: "https://leilofficial.shop/", img: "leil.png" },
-  { name: "Mesui Oghanem", url: "https://mesuioghanem.com/", img: "mesiuoghanem.png" },
-  { name: "By Fusool", url: "https://byfusool.com/", img: "mock-05.png" }, // placeholder image
-  { name: "Younji", url: "https://younji.com/", img: "younij.png" },
-];
-
-export const PORTFOLIO_COL_B: PortfolioItem[] = [
-  { name: "Fermina Store", url: "https://www.ferminastore.com/en-eg", img: "fermina.png" },
-  { name: "Dubai Cosmetics USA", url: "https://dubaicosmeticsusa.com/", img: "dubai.png" },
-  { name: "Only Superior Standard", url: "https://onlysuperiorstandard.com/", img: "mock-02.png" }, // placeholder image
-  { name: "Artist Store", url: "https://artiststore.net", img: "artiststore.png" },
-  { name: "The Jewellry Lady", url: "https://thejewellrylady.com/", img: "mock-01.png" }, // placeholder image
-];
-
 // Placeholder client names.
 export const TRUST_NAMES = ["Halden", "Norr", "Sable", "Meridian", "Lume"];
 

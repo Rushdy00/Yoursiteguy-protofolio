@@ -12,11 +12,28 @@ npm start        # serve out/ locally
 
 `out/` is plain static files — deploy to any static host (Vercel, Netlify, Cloudflare Pages, S3…).
 
+## Adding a portfolio site
+
+Add one line to `lib/portfolio.json` and push — that's it:
+
+```json
+{ "name": "New Client", "url": "https://newclient.com/" }
+```
+
+The **Portfolio screenshots** GitHub Action captures the site and commits the image to
+`public/shots/`. It also re-captures every site weekly (Mondays) so the images stay current,
+and can be run any time from the repo's *Actions* tab. Until a screenshot exists, the card
+loads a live one from microlink.io.
+
+- Capture locally instead: `npm run shots` (all) or `npm run shots -- --missing` (new only).
+- Use your own image: add `"image": "file.png"` (placed in `public/img/`) to the entry.
+
 ## Where things live
 
 | Path | What |
 |---|---|
-| `lib/content.ts` | All copy, links, portfolio/pricing/testimonial/FAQ data, cube tunables (`MOTION_CONFIG`) |
+| `lib/portfolio.json` | Portfolio sites (name + url) |
+| `lib/content.ts` | All other copy, links, pricing/testimonial/FAQ data, cube tunables (`MOTION_CONFIG`) |
 | `app/globals.css` | Design tokens (`:root`) and all styles |
 | `components/sections/*` | One file per page section (server components) |
 | `components/MotionLayer.tsx` | Single rAF loop: Lenis, portfolio parallax, cube canvas + grain |
@@ -32,4 +49,3 @@ npm start        # serve out/ locally
 - `INSTAGRAM_HREF` is generic.
 - Images `mock-01…08.png`, `laptop.png`; trust-grid names; testimonials.
 - Eyebrow numbering (Portfolio 002 before Pricing 001) and "we" vs "I" voice — confirm with client.
-- Portfolio screenshots are 1–2 MB PNGs; convert to WebP/AVIF before launch.
