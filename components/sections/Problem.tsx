@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { Accent, CtaBlock, Eyebrow } from "../ui";
+import type { Dict } from "@/lib/i18n";
+import { CtaBlock, Eyebrow, HeadingText } from "../ui";
 
-export default function Problem() {
+export default function Problem({ t }: { t: Dict }) {
+  const p = t.problem;
   return (
     <section id="problem" className="problem">
       <div
@@ -27,20 +29,19 @@ export default function Problem() {
         }}
       />
       <div className="wrap" style={{ position: "relative", maxWidth: 1100 }}>
-        <Eyebrow>003 — المشكلة</Eyebrow>
+        <Eyebrow>{p.eyebrow}</Eyebrow>
         <h2 data-rv="" className="display">
-          تصميم مُبهر.
-          <br />
-          <Accent>ومبيعات لا تُقاوَم.</Accent>
+          <HeadingText h={p.title} />
         </h2>
         <p data-rv="" className="problem-copy">
-          معظم الاستوديوهات تسلّمك موقعًا جميلًا يخسر المال بصمت. <strong>الجمال هو الحد الأدنى، لا المنتج.</strong>{" "}
-          نبدأ البناء من مسار المبيعات، ثم نمنحه جماله.
+          {p.body.before}
+          <strong>{p.body.strong}</strong>
+          {p.body.after}
         </p>
         <figure data-rv="">
-          <img src="/img/laptop.png" alt="موقع أحد العملاء على شاشة حاسوب محمول" loading="lazy" />
+          <img src="/img/laptop.png" alt={p.figureAlt} loading="lazy" />
         </figure>
-        <CtaBlock style={{ marginTop: "8vh" }} />
+        <CtaBlock t={t.cta} style={{ marginTop: "8vh" }} />
       </div>
     </section>
   );

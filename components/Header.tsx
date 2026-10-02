@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { CONTACT_EMAIL, NAV_LINKS } from "@/lib/content";
+import { CONTACT_EMAIL } from "@/lib/content";
+import type { Dict } from "@/lib/i18n";
 import { motion } from "@/lib/motion";
 
-export default function Header() {
+type Props = Pick<Dict, "nav" | "menu" | "langSwitch" | "locale">;
+
+export default function Header({ nav, menu, langSwitch, locale }: Props) {
   const [open, setOpen] = useState(false);
   const btnRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -47,12 +50,22 @@ export default function Header() {
           yoursiteguy<span className="logo-serif">Creative</span>
           <span className="dot" />
         </a>
-        <button
+        <div className="header-actions">
+          <a
+            href={langSwitch.href}
+            className="lang-switch mono"
+            lang={locale === "en" ? "ar" : "en"}
+            hrefLang={locale === "en" ? "ar" : "en"}
+            aria-label={langSwitch.aria}
+          >
+            {langSwitch.label}
+          </a>
+          <button
           ref={btnRef}
           type="button"
           className="m-toggle"
           aria-expanded={open}
-          aria-label={open ? "إغلاق القائمة" : "فتح القائمة"}
+          aria-label={open ? menu.close : menu.open}
           aria-controls="m-panel"
           onClick={() => setOpen((v) => !v)}
         >
@@ -60,7 +73,8 @@ export default function Header() {
             <span />
             <span />
           </span>
-        </button>
+          </button>
+        </div>
       </header>
 
       <div
@@ -69,12 +83,12 @@ export default function Header() {
         className={`m-panel${open ? " is-open" : ""}`}
         role="dialog"
         aria-modal="true"
-        aria-label="القائمة"
+        aria-label={menu.label}
         onClick={(e) => {
           if ((e.target as HTMLElement).closest("a[href]")) setOpen(false);
         }}
       >
-        {NAV_LINKS.map((l, i) => (
+        {nav.map((l, i) => (
           <a key={l.href} href={l.href} className="m-item" style={{ "--i": i } as React.CSSProperties}>
             {l.label}
           </a>
@@ -83,7 +97,7 @@ export default function Header() {
           href={`mailto:${CONTACT_EMAIL}`}
           className="m-item m-mail mono"
           lang="en"
-          style={{ "--i": NAV_LINKS.length } as React.CSSProperties}
+          style={{ "--i": nav.length } as React.CSSProperties}
         >
           {CONTACT_EMAIL}
         </a>

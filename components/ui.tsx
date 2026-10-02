@@ -1,9 +1,27 @@
 import type { ReactNode } from "react";
 import { APPLY_HREF } from "@/lib/content";
+import type { Dict, Heading } from "@/lib/i18n";
 
 /** Italic serif accent word with the soft ink glow. */
 export function Accent({ children }: { children: ReactNode }) {
   return <span className="accent">{children}</span>;
+}
+
+/** Renders a dictionary heading: optional first line, then text with the accent word. */
+export function HeadingText({ h }: { h: Heading }) {
+  return (
+    <>
+      {h.line1 && (
+        <>
+          {h.line1}
+          <br />
+        </>
+      )}
+      {h.before}
+      <Accent>{h.accent}</Accent>
+      {h.after}
+    </>
+  );
 }
 
 /** "● 003 — The problem" style eyebrow. */
@@ -25,27 +43,23 @@ export function PillLabel({ children, style }: { children: ReactNode; style?: Re
   );
 }
 
-/** "Apply for a build" + 3 steps + scarcity line. Used in 4 sections. */
-export function CtaBlock({ style }: { style?: React.CSSProperties }) {
+/** Apply button + 3 steps + scarcity line. Used in 4 sections. */
+export function CtaBlock({ t, style }: { t: Dict["cta"]; style?: React.CSSProperties }) {
   return (
     <div data-rv="" className="cta" style={style}>
       <a href={APPLY_HREF} className="btn-primary mono">
-        قدّم طلبك الآن
+        {t.apply}
       </a>
       <p className="cta-steps mono">
-        <span>
-          <span className="n">01</span> نموذج قصير
-        </span>
-        <span>
-          <span className="n">02</span> مكالمة سريعة
-        </span>
-        <span>
-          <span className="n-last">03</span> مبيعات أكثر
-        </span>
+        {t.steps.map((s, i) => (
+          <span key={s}>
+            <span className={i === 2 ? "n-last" : "n"}>0{i + 1}</span> {s}
+          </span>
+        ))}
       </p>
       <p className="cta-scarcity mono">
         <span className="dot pulse" aria-hidden="true" />
-        قدّم الآن — بقيت أماكن قليلة فقط
+        {t.scarcity}
       </p>
     </div>
   );

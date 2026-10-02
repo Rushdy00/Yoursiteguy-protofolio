@@ -1,19 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
 import { TRUST_NAMES } from "@/lib/content";
-import { Accent } from "../ui";
+import type { Dict } from "@/lib/i18n";
+import { HeadingText } from "../ui";
 
-export default function Trust() {
+export default function Trust({ t }: { t: Dict }) {
   return (
     <section id="trust" className="section trust">
       <div className="wrap" style={{ maxWidth: 1200 }}>
         <p data-rv="" className="label mono" style={{ marginBottom: 18 }}>
-          شركاء معتمدون
+          {t.trust.label}
         </p>
         <p data-rv="" className="trust-statement">
-          مواقع مبنية بشراكة مع Shopify و Webflow، تُقاس <Accent>بالإيرادات لا بالتصفيق.</Accent>
+          <HeadingText h={t.trust.statement} />
         </p>
         <figure data-rv="" className="figure-card">
-          <img src="/img/mock-07.png" alt="لوحة إيرادات أحد العملاء بعد الإطلاق" loading="lazy" />
+          <img src="/img/mock-07.png" alt={t.trust.figureAlt} loading="lazy" />
         </figure>
         <div data-rv="" className="logo-grid">
           {TRUST_NAMES.map((n) => (
@@ -23,7 +24,7 @@ export default function Trust() {
           ))}
           <div className="logo-stat">
             <strong>100+</strong>
-            <span className="mono">مشروع منجز</span>
+            <span className="mono">{t.trust.projects}</span>
           </div>
         </div>
       </div>

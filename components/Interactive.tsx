@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { FAQ, TESTIMONIALS } from "@/lib/content";
 import { prefersReducedMotion } from "@/lib/motion";
 
 /* ------------------------------------------------ pricing add-on switch */
@@ -39,7 +38,7 @@ export function Clock({ timeZone }: { timeZone?: string }) {
 
 /* ------------------------------------------------ FAQ accordion (single open) */
 
-export function FaqList() {
+export function FaqList({ items }: { items: { q: string; a: string }[] }) {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
   const bodies = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -59,7 +58,7 @@ export function FaqList() {
 
   return (
     <div>
-      {FAQ.map((item, i) => {
+      {items.map((item, i) => {
         const open = i === openIdx;
         return (
           <div key={item.q} className={`faq-row${open ? " is-open" : ""}`}>
@@ -97,13 +96,21 @@ export function FaqList() {
 
 /* ------------------------------------------------ testimonial carousel */
 
-export function Carousel() {
+export type Slide = {
+  name: string;
+  role: string;
+  quote: string;
+  images: { src: string; alt: string }[];
+  metric: { label: string; value: string; delta: string; points: string };
+};
+
+export function Carousel({ slides, dotLabels }: { slides: Slide[]; dotLabels: string[] }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [dragging, setDragging] = useState(false);
   const drag = useRef({ startX: 0, startIdx: 0 });
-  const n = TESTIMONIALS.length;
+  const n = slides.length;
   const active = ((index % n) + n) % n;
 
   const step = () => {
@@ -163,7 +170,7 @@ export function Carousel() {
         }}
       >
         <div ref={trackRef} className="carousel-track">
-          {TESTIMONIALS.map((t) => (
+          {slides.map((t) => (
             <article key={t.name} className="slide">
               <div className="slide-imgs">
                 {t.images.map((img) => (
@@ -193,11 +200,11 @@ export function Carousel() {
         </div>
       </div>
       <div className="carousel-dots">
-        {TESTIMONIALS.map((t, i) => (
+        {slides.map((t, i) => (
           <button
             key={t.name}
             type="button"
-            aria-label={`انتقل إلى الشهادة ${i + 1}`}
+            aria-label={dotLabels[i]}
             aria-current={i === active}
             onClick={() => setIndex(i)}
           />

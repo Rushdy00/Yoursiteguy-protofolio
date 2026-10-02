@@ -1,14 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import type { ReactNode } from "react";
-import { Accent, Eyebrow } from "../ui";
+import type { Dict } from "@/lib/i18n";
+import { Eyebrow, HeadingText } from "../ui";
 
 const SWATCHES = ["#6E7A75", "#DDE2E0", "#2C332F", "#E8ECEA", "#C3CAC7", "#CDD3D1"];
-const FUNNEL = [
-  { label: "الوصول", done: true },
-  { label: "الجذب", done: true },
-  { label: "الثقة", done: true },
-  { label: "الشراء", done: false },
-];
 
 function StepCard(props: { n: string; title: string; body: string; id?: string; children: ReactNode }) {
   return (
@@ -27,29 +22,27 @@ function StepCard(props: { n: string; title: string; body: string; id?: string; 
   );
 }
 
-export default function Blueprint() {
+export default function Blueprint({ t }: { t: Dict }) {
+  const b = t.blueprint;
+  const [s1, s2, s3] = b.steps;
   return (
     <section id="blueprint" className="section">
       <div className="wrap" style={{ maxWidth: 1300 }}>
-        <Eyebrow>004 — المنهجية</Eyebrow>
+        <Eyebrow>{b.eyebrow}</Eyebrow>
         <h2 id="bp-head" data-rv="" className="display bp-head">
-          حسِّن نتائج إعلاناتك في <Accent>3 خطوات بسيطة.</Accent>
+          <HeadingText h={b.title} />
         </h2>
         <div className="bp-stack">
-          <StepCard
-            n="01"
-            title="اتجاه واضح من المحاولة الأولى"
-            body="لوحة إلهام واحدة، وثلاثة اتجاهات مسمّاة، واختيار واحد. بلا جولات مراجعة لا تنتهي، وبلا تشتّت."
-          >
+          <StepCard n="01" title={s1.title} body={s1.body}>
             <div className="bp-panel">
-              <img src="/img/mock-08.png" alt="الاتجاه المختار مطبّقًا على صفحة منتج" className="bp-panel-img" loading="lazy" />
+              <img src="/img/mock-08.png" alt={s1.alt} className="bp-panel-img" loading="lazy" />
               <div className="swatches">
                 {SWATCHES.map((c) => (
                   <span key={c} style={{ background: c }} />
                 ))}
               </div>
               <div className="chips">
-                {["جمالية تحريرية", "تجربة سلسة", "عرض جذّاب"].map((c) => (
+                {b.chips.map((c) => (
                   <span key={c} className="chip mono">
                     {c}
                   </span>
@@ -58,48 +51,39 @@ export default function Blueprint() {
             </div>
           </StepCard>
 
-          <StepCard
-            n="02"
-            title="محتوى يوقف التمرير"
-            body="الصفحة والإعلان يُبنيان كنظام واحد، فيبقى وعد الإعلان حاضرًا بعد النقرة."
-          >
+          <StepCard n="02" title={s2.title} body={s2.body}>
             <div className="bp-panel">
               <div className="ad-preview">
-                <img src="/img/mock-06.png" alt="إعلان مبنيّ من تصميم الموقع" loading="lazy" />
+                <img src="/img/mock-06.png" alt={s2.alt} loading="lazy" />
                 <span className="ad-pill mono" style={{ insetInlineStart: 18, top: 18 }}>
-                  يوقف التمرير
+                  {b.adPills[0]}
                 </span>
                 <span className="ad-pill mono" style={{ insetInlineEnd: 18, top: 58 }}>
-                  يحوّل
+                  {b.adPills[1]}
                 </span>
                 <span className="ad-pill ad-shop mono" style={{ insetInlineStart: 18, bottom: 18 }}>
-                  تسوّق الآن
+                  {b.adPills[2]}
                 </span>
               </div>
             </div>
           </StepCard>
 
-          <StepCard
-            id="bp-card-03"
-            n="03"
-            title="مسار واحد، مُقاس من البداية للنهاية"
-            body="الوصول، الجذب، الثقة، الشراء — كل خطوة مُتتبَّعة، فيصبح التغيير القادم مبنيًّا على دليل لا على رأي."
-          >
+          <StepCard id="bp-card-03" n="03" title={s3.title} body={s3.body}>
             <div className="bp-panel bp-panel-03">
-              <img src="/img/mock-07.png" alt="لوحة تحليلات مسار المبيعات لأحد العملاء" className="bp-panel-img" loading="lazy" />
+              <img src="/img/mock-07.png" alt={s3.alt} className="bp-panel-img" loading="lazy" />
               <div className="funnel">
                 <span className="funnel-track" aria-hidden="true" />
                 <span className="funnel-progress" aria-hidden="true" />
-                {FUNNEL.map((s) => (
-                  <span key={s.label} className={`funnel-step mono${s.done ? "" : " is-todo"}`}>
+                {b.funnel.map((label, i) => (
+                  <span key={label} className={`funnel-step mono${i < 3 ? "" : " is-todo"}`}>
                     <i />
-                    {s.label}
+                    {label}
                   </span>
                 ))}
               </div>
               <div className="status-row mono">
-                <span>المسار مُحسَّن</span>
-                <span className="status-chip">نقرة ← الدفع</span>
+                <span>{b.status}</span>
+                <span className="status-chip">{b.statusChip}</span>
               </div>
             </div>
           </StepCard>

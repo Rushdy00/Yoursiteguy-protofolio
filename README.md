@@ -12,6 +12,12 @@ npm start        # serve out/ locally
 
 `out/` is plain static files — deploy to any static host (Vercel, Netlify, Cloudflare Pages, S3…).
 
+## Languages
+
+English is served at `/`, Arabic (right-to-left) at `/ar/`; the pill in the header switches between them.
+All wording for both languages is in `lib/i18n.ts` — edit the `en` and `ar` objects side by side.
+Layout CSS uses logical properties (`inset-inline-*`, `padding-inline-*`) so it mirrors automatically.
+
 ## Adding a portfolio site
 
 Add one line to `lib/portfolio.json` and push — that's it:
@@ -33,8 +39,10 @@ loads a live one from microlink.io.
 | Path | What |
 |---|---|
 | `lib/portfolio.json` | Portfolio sites (name + url) |
-| `lib/content.ts` | All other copy, links, pricing/testimonial/FAQ data, cube tunables (`MOTION_CONFIG`) |
+| `lib/i18n.ts` | All page wording, English + Arabic |
+| `lib/content.ts` | Shared data: links, prices, testimonial numbers/testimonial/FAQ data, cube tunables (`MOTION_CONFIG`) |
 | `app/globals.css` | Design tokens (`:root`) and all styles |
+| `app/(en)`, `app/(ar)/ar` | The two pages; each sets `<html lang dir>` via `components/SiteLayout.tsx` |
 | `components/sections/*` | One file per page section (server components) |
 | `components/MotionLayer.tsx` | Single rAF loop: Lenis, portfolio parallax, cube canvas + grain |
 | `lib/cube.ts` | Three.js cube (lazy-loaded, desktop ≥768px with WebGL only) |

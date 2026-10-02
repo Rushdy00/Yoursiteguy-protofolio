@@ -1,6 +1,7 @@
-import { Accent, CtaBlock, Eyebrow } from "../ui";
+import type { Dict } from "@/lib/i18n";
+import { CtaBlock, Eyebrow, HeadingText } from "../ui";
 
-export default function Hero() {
+export default function Hero({ t }: { t: Dict }) {
   return (
     <section className="hero">
       <div
@@ -26,20 +27,17 @@ export default function Hero() {
         }}
       />
       <div className="wrap" style={{ position: "relative", maxWidth: 1180 }}>
-        <Eyebrow className="hero-eyebrow">000 — حلول تقنية لنمو التجارة الإلكترونية</Eyebrow>
+        <Eyebrow className="hero-eyebrow">{t.hero.eyebrow}</Eyebrow>
         <h1 data-rv="" className="display">
-          مواقع مخصّصة فاخرة
-          <br />
-          للعلامات <Accent>الاستهلاكية</Accent>
+          <HeadingText h={t.hero.title} />
         </h1>
         <p data-rv="" className="hero-tagline">
-          جاهز خلال 12 يومًا، أو لا تدفع شيئًا.
+          {t.hero.tagline}
         </p>
         <p data-rv="" className="hero-sub lede">
-          إلى جانب المواقع، نتولّى التقنية من البداية إلى النهاية — المتاجر، والتكاملات، والأتمتة، والتحليلات — لتبيع
-          علامات التجارة الإلكترونية أكثر وبجهد أقل.
+          {t.hero.sub}
         </p>
-        <CtaBlock style={{ marginTop: 64 }} />
+        <CtaBlock t={t.cta} style={{ marginTop: 64 }} />
       </div>
     </section>
   );

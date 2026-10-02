@@ -12,27 +12,29 @@ import Problem from "@/components/sections/Problem";
 import Ready from "@/components/sections/Ready";
 import Testimonials from "@/components/sections/Testimonials";
 import Trust from "@/components/sections/Trust";
+import { dictionaries, type Locale } from "@/lib/i18n";
 
-export default function Home() {
+export default function SitePage({ locale }: { locale: Locale }) {
+  const t = dictionaries[locale];
   return (
     <div className="page">
       <MotionLayer />
-      <Header />
-      <SoundToggle />
+      <Header nav={t.nav} menu={t.menu} langSwitch={t.langSwitch} locale={t.locale} />
+      <SoundToggle t={t.sound} />
       <Reveals />
 
       <main id="top" style={{ position: "relative", zIndex: 10 }}>
-        <Hero />
-        <Portfolio />
-        <Trust />
-        <Pricing />
-        <Testimonials />
-        <Problem />
-        <Blueprint />
-        <Ready />
-        <Faq />
-        <Marquee />
-        <Footer />
+        <Hero t={t} />
+        <Portfolio t={t} />
+        <Trust t={t} />
+        <Pricing t={t} />
+        <Testimonials t={t} />
+        <Problem t={t} />
+        <Blueprint t={t} />
+        <Ready t={t} />
+        <Faq t={t} />
+        <Marquee t={t} />
+        <Footer t={t} />
       </main>
     </div>
   );

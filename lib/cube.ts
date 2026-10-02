@@ -16,11 +16,10 @@ type Options = {
   config?: Partial<typeof MOTION_CONFIG>;
 };
 
-const displayFont = () => {
-  const css = getComputedStyle(document.documentElement);
-  const fonts = [css.getPropertyValue("--font-cairo"), css.getPropertyValue("--font-manrope")].map((f) => f.trim()).filter(Boolean);
-  return fonts.length ? fonts.join(", ") : "sans-serif";
-};
+const isArabic = () => document.documentElement.lang === "ar";
+// The "?" glyph: Arabic question mark in Cairo on the Arabic page, Manrope otherwise.
+const glyph = () => (isArabic() ? "؟" : "?");
+const displayFont = () => (isArabic() ? '"Cairo", sans-serif' : '"Manrope", sans-serif');
 
 function makeEnv(renderer: THREE.WebGLRenderer) {
   // studio-ish equirect: soft grey gradient with hard rect lights
@@ -99,9 +98,9 @@ function faceTex(kind: "side" | "top" | "glyph") {
       g.textAlign = "center";
       g.textBaseline = "middle";
       g.fillStyle = "rgba(255,255,255,0.92)";
-      g.fillText("؟", 256, 268);
+      g.fillText(glyph(), 256, 268);
       g.fillStyle = "rgba(0,0,0,0.18)";
-      g.fillText("؟", 250, 262);
+      g.fillText(glyph(), 250, 262);
     }
   }
   const t = new THREE.CanvasTexture(c);
