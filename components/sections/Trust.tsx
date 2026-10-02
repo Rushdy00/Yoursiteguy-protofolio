@@ -7,23 +7,23 @@ export default function Trust() {
     <section id="trust" className="section trust">
       <div className="wrap" style={{ maxWidth: 1200 }}>
         <p data-rv="" className="label mono" style={{ marginBottom: 18 }}>
-          We are certified
+          شركاء معتمدون
         </p>
         <p data-rv="" className="trust-statement">
-          Shopify and Webflow partner builds, measured against <Accent>revenue, not applause.</Accent>
+          مواقع مبنية بشراكة مع Shopify و Webflow، تُقاس <Accent>بالإيرادات لا بالتصفيق.</Accent>
         </p>
         <figure data-rv="" className="figure-card">
-          <img src="/img/mock-07.png" alt="Client revenue dashboard after launch" loading="lazy" />
+          <img src="/img/mock-07.png" alt="لوحة إيرادات أحد العملاء بعد الإطلاق" loading="lazy" />
         </figure>
         <div data-rv="" className="logo-grid">
           {TRUST_NAMES.map((n) => (
-            <div key={n} className="logo-name mono">
+            <div key={n} className="logo-name mono" lang="en">
               {n}
             </div>
           ))}
           <div className="logo-stat">
             <strong>100+</strong>
-            <span className="mono">Projects delivered</span>
+            <span className="mono">مشروع منجز</span>
           </div>
         </div>
       </div>

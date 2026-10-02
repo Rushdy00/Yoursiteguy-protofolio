@@ -43,7 +43,7 @@ export default function Header() {
   return (
     <>
       <header className="site-header">
-        <a href="#top" className="logo">
+        <a href="#top" className="logo" dir="ltr" lang="en">
           yoursiteguy<span className="logo-serif">Creative</span>
           <span className="dot" />
         </a>
@@ -52,7 +52,7 @@ export default function Header() {
           type="button"
           className="m-toggle"
           aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? "إغلاق القائمة" : "فتح القائمة"}
           aria-controls="m-panel"
           onClick={() => setOpen((v) => !v)}
         >
@@ -69,7 +69,7 @@ export default function Header() {
         className={`m-panel${open ? " is-open" : ""}`}
         role="dialog"
         aria-modal="true"
-        aria-label="Menu"
+        aria-label="القائمة"
         onClick={(e) => {
           if ((e.target as HTMLElement).closest("a[href]")) setOpen(false);
         }}
@@ -82,6 +82,7 @@ export default function Header() {
         <a
           href={`mailto:${CONTACT_EMAIL}`}
           className="m-item m-mail mono"
+          lang="en"
           style={{ "--i": NAV_LINKS.length } as React.CSSProperties}
         >
           {CONTACT_EMAIL}

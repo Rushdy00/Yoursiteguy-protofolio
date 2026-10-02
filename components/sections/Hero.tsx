@@ -26,18 +26,18 @@ export default function Hero() {
         }}
       />
       <div className="wrap" style={{ position: "relative", maxWidth: 1180 }}>
-        <Eyebrow className="hero-eyebrow">000 — Tech solutions for ecommerce growth</Eyebrow>
+        <Eyebrow className="hero-eyebrow">000 — حلول تقنية لنمو التجارة الإلكترونية</Eyebrow>
         <h1 data-rv="" className="display">
-          Premium custom websites
+          مواقع مخصّصة فاخرة
           <br />
-          for <Accent>consumer</Accent> brands
+          للعلامات <Accent>الاستهلاكية</Accent>
         </h1>
         <p data-rv="" className="hero-tagline">
-          Live in 12 days, or you don&apos;t pay.
+          جاهز خلال 12 يومًا، أو لا تدفع شيئًا.
         </p>
         <p data-rv="" className="hero-sub lede">
-          Beyond websites, we handle tech end to end — storefronts, integrations, automations and analytics — so
-          ecommerce brands sell more with less friction.
+          إلى جانب المواقع، نتولّى التقنية من البداية إلى النهاية — المتاجر، والتكاملات، والأتمتة، والتحليلات — لتبيع
+          علامات التجارة الإلكترونية أكثر وبجهد أقل.
         </p>
         <CtaBlock style={{ marginTop: 64 }} />
       </div>

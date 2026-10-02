@@ -4,10 +4,10 @@ import { Accent, Eyebrow } from "../ui";
 
 const SWATCHES = ["#6E7A75", "#DDE2E0", "#2C332F", "#E8ECEA", "#C3CAC7", "#CDD3D1"];
 const FUNNEL = [
-  { label: "Land", done: true },
-  { label: "Hook", done: true },
-  { label: "Trust", done: true },
-  { label: "Buy", done: false },
+  { label: "الوصول", done: true },
+  { label: "الجذب", done: true },
+  { label: "الثقة", done: true },
+  { label: "الشراء", done: false },
 ];
 
 function StepCard(props: { n: string; title: string; body: string; id?: string; children: ReactNode }) {
@@ -31,25 +31,25 @@ export default function Blueprint() {
   return (
     <section id="blueprint" className="section">
       <div className="wrap" style={{ maxWidth: 1300 }}>
-        <Eyebrow>004 — The blueprint</Eyebrow>
+        <Eyebrow>004 — المنهجية</Eyebrow>
         <h2 id="bp-head" data-rv="" className="display bp-head">
-          Improve ad results in <Accent>3 simple steps.</Accent>
+          حسِّن نتائج إعلاناتك في <Accent>3 خطوات بسيطة.</Accent>
         </h2>
         <div className="bp-stack">
           <StepCard
             n="01"
-            title="Direction, decided in one pass"
-            body="A single moodboard, three named directions, one chosen. No committee rounds, no drift."
+            title="اتجاه واضح من المحاولة الأولى"
+            body="لوحة إلهام واحدة، وثلاثة اتجاهات مسمّاة، واختيار واحد. بلا جولات مراجعة لا تنتهي، وبلا تشتّت."
           >
             <div className="bp-panel">
-              <img src="/img/mock-08.png" alt="Chosen direction applied to a product page" className="bp-panel-img" loading="lazy" />
+              <img src="/img/mock-08.png" alt="الاتجاه المختار مطبّقًا على صفحة منتج" className="bp-panel-img" loading="lazy" />
               <div className="swatches">
                 {SWATCHES.map((c) => (
                   <span key={c} style={{ background: c }} />
                 ))}
               </div>
               <div className="chips">
-                {["Aesthetic Editorial", "Flow Frictionless", "Offer Magnetic"].map((c) => (
+                {["جمالية تحريرية", "تجربة سلسة", "عرض جذّاب"].map((c) => (
                   <span key={c} className="chip mono">
                     {c}
                   </span>
@@ -60,20 +60,20 @@ export default function Blueprint() {
 
           <StepCard
             n="02"
-            title="Creative that stops the scroll"
-            body="The page and the ad are built as one system, so the promise in the feed survives the click."
+            title="محتوى يوقف التمرير"
+            body="الصفحة والإعلان يُبنيان كنظام واحد، فيبقى وعد الإعلان حاضرًا بعد النقرة."
           >
             <div className="bp-panel">
               <div className="ad-preview">
-                <img src="/img/mock-06.png" alt="Ad creative built from the site design" loading="lazy" />
-                <span className="ad-pill mono" style={{ left: 18, top: 18 }}>
-                  Scroll-stop
+                <img src="/img/mock-06.png" alt="إعلان مبنيّ من تصميم الموقع" loading="lazy" />
+                <span className="ad-pill mono" style={{ insetInlineStart: 18, top: 18 }}>
+                  يوقف التمرير
                 </span>
-                <span className="ad-pill mono" style={{ right: 18, top: 58 }}>
-                  Convert
+                <span className="ad-pill mono" style={{ insetInlineEnd: 18, top: 58 }}>
+                  يحوّل
                 </span>
-                <span className="ad-pill ad-shop mono" style={{ left: 18, bottom: 18 }}>
-                  Shop now
+                <span className="ad-pill ad-shop mono" style={{ insetInlineStart: 18, bottom: 18 }}>
+                  تسوّق الآن
                 </span>
               </div>
             </div>
@@ -82,11 +82,11 @@ export default function Blueprint() {
           <StepCard
             id="bp-card-03"
             n="03"
-            title="One path, measured end to end"
-            body="Land, hook, trust, buy — every step instrumented, so the next change is evidence, not opinion."
+            title="مسار واحد، مُقاس من البداية للنهاية"
+            body="الوصول، الجذب، الثقة، الشراء — كل خطوة مُتتبَّعة، فيصبح التغيير القادم مبنيًّا على دليل لا على رأي."
           >
             <div className="bp-panel bp-panel-03">
-              <img src="/img/mock-07.png" alt="Funnel analytics dashboard for a client build" className="bp-panel-img" loading="lazy" />
+              <img src="/img/mock-07.png" alt="لوحة تحليلات مسار المبيعات لأحد العملاء" className="bp-panel-img" loading="lazy" />
               <div className="funnel">
                 <span className="funnel-track" aria-hidden="true" />
                 <span className="funnel-progress" aria-hidden="true" />
@@ -98,8 +98,8 @@ export default function Blueprint() {
                 ))}
               </div>
               <div className="status-row mono">
-                <span>Path optimized</span>
-                <span className="status-chip">Click → Checkout</span>
+                <span>المسار مُحسَّن</span>
+                <span className="status-chip">نقرة ← الدفع</span>
               </div>
             </div>
           </StepCard>

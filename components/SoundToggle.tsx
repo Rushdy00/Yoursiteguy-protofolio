@@ -10,11 +10,11 @@ export default function SoundToggle() {
       type="button"
       className="sound-toggle mono"
       aria-pressed={on}
-      aria-label="Toggle motion sound"
+      aria-label="تشغيل أو إيقاف صوت الحركة"
       onClick={() => setOn(toggleSound())}
     >
       <span className="sound-dot" aria-hidden="true" />
-      <span>{on ? "Sound on" : "Sound off"}</span>
+      <span>{on ? "الصوت مُفعّل" : "الصوت مُطفأ"}</span>
     </button>
   );
 }

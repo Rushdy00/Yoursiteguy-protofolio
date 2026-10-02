@@ -8,10 +8,10 @@ export const APPLY_HREF = `mailto:${CONTACT_EMAIL}`;
 export const INSTAGRAM_HREF = "https://instagram.com";
 
 export const NAV_LINKS = [
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#blueprint", label: "Blueprint" },
-  { href: "#faq", label: "FAQ" },
+  { href: "#portfolio", label: "أعمالنا" },
+  { href: "#pricing", label: "الأسعار" },
+  { href: "#blueprint", label: "المنهجية" },
+  { href: "#faq", label: "الأسئلة الشائعة" },
 ];
 
 // Placeholder client names.
@@ -28,29 +28,29 @@ export type PricingPlan = {
 
 export const PRICING: PricingPlan[] = [
   {
-    title: "Conversion site",
-    desc: "A five-page build engineered around one action.",
+    title: "موقع التحويل",
+    desc: "موقع من خمس صفحات مبنيّ حول هدف واحد.",
     price: "$6,400",
-    suffix: "/starting",
-    addon: { label: "Custom product visuals", price: "+$2,000", aria: "Add custom product visuals" },
+    suffix: "/ابتداءً من",
+    addon: { label: "صور منتجات مخصّصة", price: "+$2,000", aria: "إضافة صور منتجات مخصّصة" },
     features: [
-      "Five pages, fully bespoke",
-      "Copy structure and offer framing",
-      "Analytics and event tracking",
-      "12-day delivery or it's free",
+      "خمس صفحات بتصميم خاص بالكامل",
+      "هيكلة المحتوى وصياغة العرض",
+      "تحليلات وتتبّع للأحداث",
+      "تسليم خلال 12 يومًا أو مجانًا",
     ],
   },
   {
-    title: "Full commerce",
-    desc: "Storefront, PDP system, and checkout flow.",
+    title: "متجر متكامل",
+    desc: "واجهة المتجر، ونظام صفحات المنتجات، ومسار الدفع.",
     price: "$14,000",
-    suffix: "/fixed",
-    addon: { label: "Motion & WebGL layer", price: "+$3,500", aria: "Add motion and WebGL layer" },
+    suffix: "/سعر ثابت",
+    addon: { label: "طبقة الحركة و WebGL", price: "+$3,500", aria: "إضافة طبقة الحركة و WebGL" },
     features: [
-      "Design system and component library",
-      "Product page templates",
-      "Checkout and cart optimisation",
-      "Six weeks post-launch support",
+      "نظام تصميم ومكتبة مكوّنات",
+      "قوالب صفحات المنتجات",
+      "تحسين السلة وصفحة الدفع",
+      "ستة أسابيع دعم بعد الإطلاق",
     ],
   },
 ];
@@ -67,80 +67,80 @@ export type Testimonial = {
 export const TESTIMONIALS: Testimonial[] = [
   {
     images: [
-      { src: "mock-01.png", alt: "Halden Type site, desktop view" },
-      { src: "mock-03.png", alt: "Halden Type site, second view" },
+      { src: "mock-01.png", alt: "موقع Halden، عرض سطح المكتب" },
+      { src: "mock-03.png", alt: "موقع Halden، عرض ثانٍ" },
     ],
-    quote: '"We stopped explaining ourselves. The site does it, and the checkout numbers moved in a week."',
+    quote: "«توقّفنا عن شرح أنفسنا. الموقع يقوم بذلك عنّا، وتحرّكت أرقام الدفع خلال أسبوع.»",
     name: "Ida Halden",
-    role: "Founder, Halden",
-    metric: { label: "Add to cart rate", value: "4.8%", delta: "↗ 146%", points: "0,26 18,20 34,23 52,14 70,16 88,8 106,10 120,3" },
+    role: "مؤسِّسة، Halden",
+    metric: { label: "معدّل الإضافة للسلة", value: "4.8%", delta: "↗ 146%", points: "0,26 18,20 34,23 52,14 70,16 88,8 106,10 120,3" },
   },
   {
     images: [
-      { src: "mock-04.png", alt: "Norr Atelier site, desktop view" },
-      { src: "mock-05.png", alt: "Norr Atelier site, second view" },
+      { src: "mock-04.png", alt: "موقع Norr، عرض سطح المكتب" },
+      { src: "mock-05.png", alt: "موقع Norr، عرض ثانٍ" },
     ],
-    quote: '"Twelve days, start to launch, and it looks nothing like our competitors. That was the whole brief."',
+    quote: "«اثنا عشر يومًا من البداية حتى الإطلاق، ولا يشبه أيًّا من منافسينا. وهذا كان المطلوب بالضبط.»",
     name: "Petter Nord",
-    role: "CMO, Norr",
-    metric: { label: "Revenue per session", value: "$3.42", delta: "↗ 88%", points: "0,24 18,25 34,18 52,19 70,11 88,13 106,6 120,5" },
+    role: "مدير التسويق، Norr",
+    metric: { label: "الإيراد لكل جلسة", value: "$3.42", delta: "↗ 88%", points: "0,24 18,25 34,18 52,19 70,11 88,13 106,6 120,5" },
   },
   {
     images: [
-      { src: "mock-06.png", alt: "Sable Roasters site, desktop view" },
-      { src: "mock-02.png", alt: "Sable Roasters site, second view" },
+      { src: "mock-06.png", alt: "موقع Sable، عرض سطح المكتب" },
+      { src: "mock-02.png", alt: "موقع Sable، عرض ثانٍ" },
     ],
-    quote: '"He found the leak in our funnel before he opened a design file. Then he fixed both."',
+    quote: "«وجد الثغرة في مسار المبيعات قبل أن يفتح ملف تصميم واحد. ثم أصلح الاثنين.»",
     name: "Mara Sable",
-    role: "Owner, Sable",
-    metric: { label: "Subscription signups", value: "1,204", delta: "↗ 212%", points: "0,27 18,22 34,24 52,16 70,12 88,12 106,7 120,2" },
+    role: "المالكة، Sable",
+    metric: { label: "اشتراكات جديدة", value: "1,204", delta: "↗ 212%", points: "0,27 18,22 34,24 52,16 70,12 88,12 106,7 120,2" },
   },
   {
     images: [
-      { src: "mock-02.png", alt: "Lume Skincare site, desktop view" },
-      { src: "mock-01.png", alt: "Lume Skincare site, second view" },
+      { src: "mock-02.png", alt: "موقع Lume، عرض سطح المكتب" },
+      { src: "mock-01.png", alt: "موقع Lume، عرض ثانٍ" },
     ],
-    quote: '"Our ad spend finally lands somewhere that sells. Same traffic, very different month."',
+    quote: "«إنفاقنا الإعلاني أصبح أخيرًا يصل إلى مكان يبيع. نفس الزيارات، وشهر مختلف تمامًا.»",
     name: "Joss Lume",
-    role: "Founder, Lume",
-    metric: { label: "Blended ROAS", value: "3.9×", delta: "↗ 61%", points: "0,22 18,24 34,17 52,18 70,13 88,9 106,11 120,4" },
+    role: "مؤسِّس، Lume",
+    metric: { label: "العائد على الإعلانات", value: "3.9×", delta: "↗ 61%", points: "0,22 18,24 34,17 52,18 70,13 88,9 106,11 120,4" },
   },
 ];
 
 export const FAQ: { q: string; a: string }[] = [
   {
-    q: "How can you launch in twelve days?",
-    a: "Because the scope is fixed before we start and there's no handoff layer — one person designs and builds, so nothing waits in a queue.",
+    q: "كيف يمكنك الإطلاق خلال اثني عشر يومًا؟",
+    a: "لأن نطاق العمل يُحدَّد قبل أن نبدأ، ولا توجد طبقة تسليم بين الفرق — شخص واحد يصمّم ويبني، فلا شيء ينتظر في طابور.",
   },
   {
-    q: "What happens if you miss the deadline?",
-    a: "You don't pay. The only exception is a delay on your side — missing content or approvals pauses the clock, and I'll tell you the moment it happens.",
+    q: "ماذا يحدث إن تأخّرت عن الموعد؟",
+    a: "لا تدفع شيئًا. الاستثناء الوحيد هو التأخير من جهتك — نقص المحتوى أو الموافقات يوقف العدّاد، وسأخبرك فور حدوث ذلك.",
   },
   {
-    q: "Do you write the copy?",
-    a: "I write the structure, headlines, and offer framing. If you have a copywriter, they work inside that skeleton — it's what makes the page convert.",
+    q: "هل تكتب المحتوى؟",
+    a: "أكتب الهيكل والعناوين وصياغة العرض. إن كان لديك كاتب محتوى، فسيعمل داخل هذا الهيكل — وهذا ما يجعل الصفحة تبيع.",
   },
   {
-    q: "Which platform do you build on?",
-    a: "Shopify for commerce, Webflow for marketing sites, hand-coded when the interaction demands it. The platform follows the goal, never the reverse.",
+    q: "على أي منصّة تبني؟",
+    a: "Shopify للتجارة، و Webflow لمواقع التسويق، وبرمجة يدوية عندما يتطلّب التفاعل ذلك. المنصّة تتبع الهدف، لا العكس.",
   },
   {
-    q: "Can you work with our in-house team?",
-    a: "Yes — I hand over a documented component library and a Loom walkthrough, so your developers can extend the system without guessing.",
+    q: "هل يمكنك العمل مع فريقنا الداخلي؟",
+    a: "نعم — أسلّمكم مكتبة مكوّنات موثّقة وشرحًا مصوّرًا، ليتمكّن مطوّروكم من توسيع النظام دون تخمين.",
   },
   {
-    q: "What do you need from me to start?",
-    a: "Brand assets, product photography, and one decision-maker on the call. That's genuinely it.",
+    q: "ماذا تحتاج منّي للبدء؟",
+    a: "هوية العلامة التجارية، وصور المنتجات، وصاحب قرار واحد في المكالمة. هذا كل شيء فعلًا.",
   },
 ];
 
 export const MARQUEE = [
-  "Design that converts",
-  "Tech solutions end to end",
-  "More sales for ecommerce brands",
-  "Stop burning ad spend",
-  "Integrations & automations",
-  "We build revenue machines",
+  "تصميم يبيع",
+  "حلول تقنية متكاملة",
+  "مبيعات أكثر لمتاجر التجارة الإلكترونية",
+  "أوقف هدر ميزانية الإعلانات",
+  "تكاملات وأتمتة",
+  "نبني آلات للإيرادات",
 ];
 
 // Cube / motion tunables (ranges from the handoff in comments).

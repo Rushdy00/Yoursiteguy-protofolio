@@ -6,9 +6,9 @@ export default function Pricing() {
   return (
     <section id="pricing" className="section">
       <div className="wrap" style={{ maxWidth: 1200 }}>
-        <PillLabel style={{ marginBottom: 22 }}>001 — Pricing</PillLabel>
+        <PillLabel style={{ marginBottom: 22 }}>001 — الأسعار</PillLabel>
         <h2 data-rv="" className="display h2" style={{ marginBottom: "8vh" }}>
-          Built to <Accent>convert.</Accent>
+          مبنيّ <Accent>ليبيع.</Accent>
         </h2>
         <div className="pricing-grid">
           {PRICING.map((plan) => (
@@ -22,12 +22,12 @@ export default function Pricing() {
                 </p>
                 <div className="addon">
                   <span className="addon-label">
-                    {plan.addon.label} <span>{plan.addon.price}</span>
+                    {plan.addon.label} <span dir="ltr">{plan.addon.price}</span>
                   </span>
                   <AddonSwitch label={plan.addon.aria} />
                 </div>
                 <a href={APPLY_HREF} className="btn-call mono">
-                  <span aria-hidden="true">▤</span>Book a call
+                  <span aria-hidden="true">▤</span>احجز مكالمة
                 </a>
               </div>
               <div className="price-features">

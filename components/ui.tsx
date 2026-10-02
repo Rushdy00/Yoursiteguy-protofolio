@@ -30,22 +30,22 @@ export function CtaBlock({ style }: { style?: React.CSSProperties }) {
   return (
     <div data-rv="" className="cta" style={style}>
       <a href={APPLY_HREF} className="btn-primary mono">
-        Apply for a build
+        قدّم طلبك الآن
       </a>
       <p className="cta-steps mono">
         <span>
-          <span className="n">01</span> Short form
+          <span className="n">01</span> نموذج قصير
         </span>
         <span>
-          <span className="n">02</span> Quick call
+          <span className="n">02</span> مكالمة سريعة
         </span>
         <span>
-          <span className="n-last">03</span> More sales
+          <span className="n-last">03</span> مبيعات أكثر
         </span>
       </p>
       <p className="cta-scarcity mono">
         <span className="dot pulse" aria-hidden="true" />
-        Apply now — only a few slots remaining
+        قدّم الآن — بقيت أماكن قليلة فقط
       </p>
     </div>
   );

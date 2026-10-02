@@ -7,38 +7,41 @@ function Card({ item }: { item: PortfolioItem }) {
     <a href={item.url} target="_blank" rel="noopener noreferrer" data-rv="" data-pc="" className="pcard">
       <img src={imageFor(item)} alt={`${item.name} website`} loading="lazy" decoding="async" />
       <span className="pcard-shade" aria-hidden="true" />
-      <span className="pcard-name mono">{item.name}</span>
+      <span className="pcard-name mono" lang="en">
+        {item.name}
+      </span>
       <span className="pcard-arrow" aria-hidden="true">
-        ↗
+        ↖
       </span>
     </a>
   );
 }
 
-const WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
+// Arabic plural agreement: 3–10 → مشاريع, 11+ → مشروعًا.
+const countLabel = (n: number) => (n <= 10 ? `${n} مشاريع` : `${n} مشروعًا`);
 
 export default function Portfolio() {
   // Alternate items between the two parallax columns.
   const colA = PORTFOLIO.filter((_, i) => i % 2 === 0);
   const colB = PORTFOLIO.filter((_, i) => i % 2 === 1);
-  const count = WORDS[PORTFOLIO.length] ?? String(PORTFOLIO.length);
+  const count = countLabel(PORTFOLIO.length);
   return (
     <section id="portfolio" className="section">
       <div className="wrap" style={{ maxWidth: 1400 }}>
-        <PillLabel>002 — Portfolio</PillLabel>
+        <PillLabel>002 — أعمالنا</PillLabel>
         <div className="head-row" style={{ marginBottom: "9vh" }}>
           <h2 data-rv="" className="display h2" style={{ maxWidth: "20ch" }}>
-            Engineered for <Accent>conversions</Accent>
+            مصمَّمة لرفع <Accent>التحويلات</Accent>
           </h2>
           <div data-rv="" style={{ maxWidth: "46ch" }}>
             <p className="lede" style={{ margin: "0 0 22px" }}>
-              {count} builds, one pattern: strip the friction, sharpen the offer, let the design carry the argument. Every
-              site below shipped inside two weeks.
+              {count}، ونهج واحد: أزِل العوائق، وقوِّ العرض، ودَع التصميم يُقنع العميل. كل موقع هنا أُطلق في أقل من
+              أسبوعين.
             </p>
             <a href="#portfolio" className="explore mono">
-              Explore full portfolio
+              استكشف كل الأعمال
               <span className="explore-arrow" aria-hidden="true">
-                →
+                ←
               </span>
             </a>
           </div>
