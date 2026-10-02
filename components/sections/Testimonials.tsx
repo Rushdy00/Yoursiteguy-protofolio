@@ -6,7 +6,7 @@ export default function Testimonials() {
     <section id="testimonials" className="testimonials">
       <div className="wrap" style={{ maxWidth: 1400, padding: "0 var(--px)" }}>
         <h2 data-rv="" className="display">
-          Receipts, not <Accent>adjectives.</Accent>
+          أرقام، لا <Accent>مجاملات.</Accent>
         </h2>
       </div>
       <Carousel />

@@ -30,7 +30,11 @@ export function Clock({ timeZone }: { timeZone?: string }) {
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, [timeZone]);
-  return <p className="clock">{text}</p>;
+  return (
+    <p className="clock" dir="ltr" lang="en">
+      {text}
+    </p>
+  );
 }
 
 /* ------------------------------------------------ FAQ accordion (single open) */
@@ -113,7 +117,8 @@ export function Carousel() {
       const wrap = wrapRef.current, track = trackRef.current;
       if (!wrap || !track) return;
       const max = Math.max(0, n - Math.max(1, Math.floor(wrap.clientWidth / step())));
-      track.style.transform = `translate3d(${-Math.min(active, max) * step()}px,0,0)`;
+      const dir = getComputedStyle(wrap).direction === "rtl" ? 1 : -1;
+      track.style.transform = `translate3d(${dir * Math.min(active, max) * step()}px,0,0)`;
     };
     apply();
     window.addEventListener("resize", apply);
@@ -131,7 +136,8 @@ export function Carousel() {
   useEffect(() => {
     if (!dragging) return;
     const onMove = (e: PointerEvent) => {
-      const d = (drag.current.startX - e.clientX) / step();
+      const rtl = wrapRef.current && getComputedStyle(wrapRef.current).direction === "rtl";
+      const d = ((drag.current.startX - e.clientX) * (rtl ? -1 : 1)) / step();
       setIndex(drag.current.startIdx + Math.round(d));
     };
     const onUp = () => setDragging(false);
@@ -191,7 +197,7 @@ export function Carousel() {
           <button
             key={t.name}
             type="button"
-            aria-label={`Go to testimonial ${i + 1}`}
+            aria-label={`انتقل إلى الشهادة ${i + 1}`}
             aria-current={i === active}
             onClick={() => setIndex(i)}
           />

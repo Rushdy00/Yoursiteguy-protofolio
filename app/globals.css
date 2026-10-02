@@ -28,10 +28,13 @@
 
   --px: clamp(20px, 5vw, 72px);
 
-  --display: var(--font-manrope), Manrope, sans-serif;
-  --body: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
-  --serif: var(--font-instrument-serif), "Instrument Serif", serif;
-  --mono: var(--font-plex-mono), "IBM Plex Mono", monospace;
+  /* Latin face first (its unicode-range has no Arabic), then the Arabic companion.
+     Families are named directly: the next/font variables also list a generated
+     "X Fallback" (Arial) face, which would catch Arabic glyphs before Cairo/Amiri. */
+  --display: "Manrope", "Cairo", sans-serif;
+  --body: "DM Sans", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --serif: "Instrument Serif", "Amiri", serif;
+  --mono: "IBM Plex Mono", "IBM Plex Sans Arabic", monospace;
 }
 
 /* ------------------------------------------------------------------ base */
@@ -233,7 +236,7 @@ html.lenis, html.lenis body { height: auto; }
 /* ------------------------------------------------------------------ sound toggle */
 .sound-toggle {
   position: fixed;
-  right: clamp(20px, 4vw, 56px);
+  inset-inline-end: clamp(20px, 4vw, 56px);
   bottom: 24px;
   z-index: 85;
   display: flex;
@@ -319,7 +322,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .pcard-name {
   position: absolute;
-  left: 20px;
+  inset-inline-start: 20px;
   bottom: 18px;
   color: #fff;
   font-size: 11px;
@@ -327,7 +330,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .pcard-arrow {
   position: absolute;
-  right: 18px;
+  inset-inline-end: 18px;
   bottom: 16px;
   width: 36px;
   height: 36px;
@@ -360,9 +363,9 @@ html.lenis, html.lenis body { height: auto; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
+  border-inline-start: 1px solid var(--line);
 }
-.logo-grid > div { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 42px 18px; }
+.logo-grid > div { border-inline-end: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 42px 18px; }
 .logo-name { font-size: 13px; color: rgba(0, 0, 0, 0.4); }
 .logo-grid > .logo-stat { padding: 34px 18px; }
 .logo-stat strong { display: block; font-family: var(--display); font-weight: 800; font-size: 34px; letter-spacing: -0.035em; color: var(--sage); }
@@ -509,7 +512,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .bp-num {
   position: absolute;
-  right: -2%;
+  inset-inline-end: -2%;
   top: -22%;
   font-family: var(--display);
   font-weight: 800;
@@ -546,8 +549,8 @@ html.lenis, html.lenis body { height: auto; }
 .bp-panel-03 .bp-panel-img { margin-bottom: 26px; }
 .funnel { position: relative; display: flex; justify-content: space-between; margin-bottom: 26px; }
 .funnel-track, .funnel-progress { position: absolute; top: 7px; height: 2px; }
-.funnel-track { left: 6%; right: 6%; background: #dde2e0; }
-.funnel-progress { left: 6%; width: 62%; background: var(--sage); }
+.funnel-track { inset-inline: 6%; background: #dde2e0; }
+.funnel-progress { inset-inline-start: 6%; width: 62%; background: var(--sage); }
 .funnel-step {
   position: relative;
   display: flex;
@@ -598,7 +601,7 @@ html.lenis, html.lenis body { height: auto; }
   background: none;
   border: 0;
   cursor: pointer;
-  text-align: left;
+  text-align: start;
   font: inherit;
   color: inherit;
 }
@@ -620,12 +623,12 @@ html.lenis, html.lenis body { height: auto; }
 }
 .faq-row.is-open .faq-icon { background: var(--sage); border-color: var(--sage); color: #000; }
 .faq-body { overflow: hidden; transition: height 400ms var(--ease-out-expo); }
-.faq-body p { margin: 0; padding: 0 22px 30px 62px; max-width: 70ch; font-size: 16px; line-height: 1.75; color: var(--muted); }
+.faq-body p { margin: 0; padding: 0 22px 30px; padding-inline-start: 62px; max-width: 70ch; font-size: 16px; line-height: 1.75; color: var(--muted); }
 
 /* ------------------------------------------------------------------ marquee */
 .marquee { background: #fff; padding: 26px 0; overflow: hidden; border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
 .marquee-track { display: flex; width: max-content; animation: ysgMarquee 40s linear infinite; }
-.marquee-group { display: flex; gap: 40px; padding-right: 40px; font-size: 12px; color: var(--sage); white-space: nowrap; }
+.marquee-group { display: flex; gap: 40px; padding-inline-end: 40px; font-size: 12px; color: var(--sage); white-space: nowrap; }
 
 /* ------------------------------------------------------------------ footer */
 .footer {
@@ -666,3 +669,20 @@ html.lenis, html.lenis body { height: auto; }
   white-space: nowrap;
 }
 .watermark span { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+/* ------------------------------------------------------------------ Arabic / RTL */
+/* Letter-spacing breaks Arabic letter joining; keep it only on Latin (lang="en") runs. */
+html[lang="ar"] :is(.mono, .display, .label, .faq-text, .faq-num, .price, .metric-value, .trust-statement,
+  .m-item, .price-card h3, .bp-card h3, .logo-stat strong, .chip, .ad-pill, .funnel-step, .status-row,
+  .slide-role):not([lang="en"]) { letter-spacing: 0; }
+/* Cairo/Amiri need more vertical room than the Latin display face. */
+html[lang="ar"] .display { line-height: 1.3; }
+html[lang="ar"] .testimonials h2 { line-height: 1.3; }
+html[lang="ar"] .m-item:not(.m-mail) { line-height: 1.45; }
+html[lang="ar"] .trust-statement { line-height: 1.6; }
+html[lang="ar"] .accent { font-style: normal; }
+html[lang="ar"] .hero-tagline, html[lang="ar"] .slide-quote { font-style: normal; }
+[dir="rtl"] .pcard:hover .pcard-arrow, [dir="rtl"] .pcard:focus .pcard-arrow { transform: scale(1.1) translate(-2px, -2px); }
+@keyframes ysgMarqueeRtl { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(50%, 0, 0); } }
+[dir="rtl"] .marquee-track { animation-name: ysgMarqueeRtl; }
+[dir="rtl"] .switch { direction: ltr; }

@@ -27,19 +27,18 @@ export default function Problem() {
         }}
       />
       <div className="wrap" style={{ position: "relative", maxWidth: 1100 }}>
-        <Eyebrow>003 — The problem</Eyebrow>
+        <Eyebrow>003 — المشكلة</Eyebrow>
         <h2 data-rv="" className="display">
-          Stunning aesthetics.
+          تصميم مُبهر.
           <br />
-          <Accent>Ruthless conversions.</Accent>
+          <Accent>ومبيعات لا تُقاوَم.</Accent>
         </h2>
         <p data-rv="" className="problem-copy">
-          Most studios hand you a beautiful site that quietly loses money.{" "}
-          <strong>Pretty is the baseline, not the product.</strong> The build starts with the funnel, then earns its
-          looks.
+          معظم الاستوديوهات تسلّمك موقعًا جميلًا يخسر المال بصمت. <strong>الجمال هو الحد الأدنى، لا المنتج.</strong>{" "}
+          نبدأ البناء من مسار المبيعات، ثم نمنحه جماله.
         </p>
         <figure data-rv="">
-          <img src="/img/laptop.png" alt="Client site shown on a laptop" loading="lazy" />
+          <img src="/img/laptop.png" alt="موقع أحد العملاء على شاشة حاسوب محمول" loading="lazy" />
         </figure>
         <CtaBlock style={{ marginTop: "8vh" }} />
       </div>
