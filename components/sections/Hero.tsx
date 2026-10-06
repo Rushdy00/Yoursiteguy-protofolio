@@ -31,12 +31,16 @@ export default function Hero({ t }: { t: Dict }) {
         <h1 data-rv="" className="display">
           <HeadingText h={t.hero.title} />
         </h1>
-        <p data-rv="" className="hero-tagline">
-          {t.hero.tagline}
-        </p>
-        <p data-rv="" className="hero-sub lede">
-          {t.hero.sub}
-        </p>
+        {t.hero.tagline && (
+          <p data-rv="" className="hero-tagline">
+            {t.hero.tagline}
+          </p>
+        )}
+        {t.hero.sub && (
+          <p data-rv="" className="hero-sub lede">
+            {t.hero.sub}
+          </p>
+        )}
         {t.hero.shopify && (
           <div data-rv="" className="hero-shopify">
             <p className="hero-shopify-line">

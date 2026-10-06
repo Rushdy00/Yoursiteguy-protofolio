@@ -26,7 +26,7 @@ export type Dict = {
   menu: { open: string; close: string; label: string };
   sound: { on: string; off: string; aria: string };
   cta: { apply: string; steps: [string, string, string]; scarcity: string };
-  hero: { eyebrow: string; title: Heading; tagline: string; sub: string; shopify?: { line: Heading; badgeAlt: string } };
+  hero: { eyebrow: string; title: Heading; tagline?: string; sub?: string; shopify?: { line: Heading; badgeAlt: string } };
   portfolio: { pill: string; title: Heading; intro: (count: number) => string; explore: string; cardAlt: (name: string) => string; arrow: string; exploreArrow: string };
   trust: { label: string; statement: Heading; figureAlt: string; projects: string };
   pricing: { pill: string; title: Heading; book: string; plans: [Plan, Plan] };
@@ -80,8 +80,6 @@ const en: Dict = {
   hero: {
     eyebrow: "000 — Tech solutions for ecommerce growth",
     title: { line1: "Premium custom websites", before: "for ", accent: "consumer", after: " brands" },
-    tagline: "Live in 12 days, or you don't pay.",
-    sub: "Beyond websites, we handle tech end to end — storefronts, integrations, automations and analytics — so ecommerce brands sell more with less friction.",
     shopify: {
       line: { line1: "Get your ecommerce website built by", accent: "a Shopify expert agency" },
       badgeAlt: "Shopify Partners and Shopify Experts",
