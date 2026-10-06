@@ -29,6 +29,7 @@ export type Dict = {
   hero: { eyebrow: string; title: Heading; tagline?: string; sub?: string; shopify?: { line: Heading; badgeAlt: string } };
   portfolio: { pill: string; title: Heading; intro: (count: number) => string; explore: string; cardAlt: (name: string) => string; arrow: string; exploreArrow: string };
   trust: { label: string; statement: Heading; figureAlt: string; projects: string };
+  shopifyFeatures: { pill: string; title: Heading; sub: string; items: { title: string; body: string }[] };
   pricing: { pill: string; title: Heading; book: string; plans: [Plan, Plan] };
   testimonials: { title: Heading; dotLabel: (i: number) => string; items: Testimonial[] };
   problem: { eyebrow: string; title: Heading; body: { before: string; strong: string; after: string }; figureAlt: string };
@@ -102,6 +103,53 @@ const en: Dict = {
     statement: { before: "Shopify and Webflow partner builds, measured against ", accent: "revenue, not applause." },
     figureAlt: "Client revenue dashboard after launch",
     projects: "Projects delivered",
+  },
+  shopifyFeatures: {
+    pill: "Why Shopify",
+    title: { before: "Shopify ", accent: "features" },
+    sub: "The world's leading platform for building a professional online store.",
+    items: [
+      {
+        title: "Easy store management",
+        body: "A simple, easy-to-use dashboard where you run every detail of your store — products, orders, customers and discounts — with no technical experience.",
+      },
+      {
+        title: "Powerful, unlimited cloud hosting",
+        body: "Fast, secure hosting that handles any number of visitors and keeps your store running smoothly even during ad campaigns, with unlimited products at no extra cost.",
+      },
+      {
+        title: "Smart inventory management",
+        body: "Automatic stock tracking with alerts when products are running low, and the option to set a separate quantity for each location.",
+      },
+      {
+        title: "Mobile app for full control",
+        body: "Run your store easily from your phone at any time, with instant notifications for new orders.",
+      },
+      {
+        title: "Advanced security and protection",
+        body: "Shopify gives your store complete protection: a free SSL certificate, an advanced fraud-protection system and PCI DSS compliance, plus two-factor authentication to keep your account and your customers' data safe from attacks.",
+      },
+      {
+        title: "Search engine optimisation (SEO)",
+        body: "Built-in tools to improve how your store shows up on Google, with custom titles, descriptions and URLs for every page of the site.",
+      },
+      {
+        title: "AI support",
+        body: "Shopify offers advanced AI tools for writing product descriptions, smart marketing and analysing customer behaviour — a strong competitive edge worldwide, because Shopify is a global platform that always keeps up with the latest technology.",
+      },
+      {
+        title: "Comprehensive analytics and reports",
+        body: "Detailed reports on sales, visitors and conversion rates, so you make decisions based on real numbers.",
+      },
+      {
+        title: "A huge app library",
+        body: "More than 12,000 apps to add any feature you need — marketing, shipping, payments, bundles, upsell, cross-sell and more — to grow sales and make your store easier to run.",
+      },
+      {
+        title: "Smart customer management",
+        body: "Shopify lets you build a strong customer database and segment it by buying behaviour, frequency or value, so you can target each segment with tailored offers and marketing, grow sales and build stronger relationships with your customers.",
+      },
+    ],
   },
   pricing: {
     pill: "001 — Pricing",
@@ -303,6 +351,53 @@ const ar: Dict = {
     statement: { before: "مواقع بنبنيها كشركاء معتمدين من Shopify و Webflow، ومقياسنا ", accent: "المبيعات مش التصفيق." },
     figureAlt: "داشبورد مبيعات عميل بعد الإطلاق",
     projects: "مشروع اتسلّم",
+  },
+  shopifyFeatures: {
+    pill: "ليه شوبيفاي",
+    title: { before: "مميزات ", accent: "شوبيفاي" },
+    sub: "المنصة الأولى عالمياً لبناء متجرك الإلكتروني الاحترافي",
+    items: [
+      {
+        title: "سهولة إدارة المتجر",
+        body: "واجهة بسيطة وسهلة الاستخدام، تدير منها كل تفاصيل متجرك (منتجات، طلبات، عملاء، خصومات) بدون أي خبرة تقنية.",
+      },
+      {
+        title: "استضافة سحابية قوية وغير محدودة",
+        body: "استضافة سريعة وآمنة تتحمل أي عدد من الزوار، وتضمن بقاء متجرك يعمل بكفاءة حتى أثناء الحملات الإعلانية، مع إمكانية إضافة عدد غير محدود من المنتجات بدون أي تكلفة إضافية.",
+      },
+      {
+        title: "إدارة مخزون ذكية",
+        body: "تتبع تلقائي للمخزون مع تنبيهات عند قرب نفاد المنتجات، وإمكانية تحديد كمية خاصة لكل فرع.",
+      },
+      {
+        title: "تطبيق موبايل للتحكم الكامل",
+        body: "أدر متجرك بسهولة من الهاتف في أي وقت، مع إشعارات فورية بالطلبات الجديدة.",
+      },
+      {
+        title: "الأمان والحماية المتقدمة",
+        body: "شوبيفاي توفر لك حماية متكاملة لمتجرك من خلال شهادة SSL مجانية، ونظام متطور للحماية من الاحتيال، بالإضافة إلى التوافق مع معايير أمان PCI DSS، وإمكانية تفعيل المصادقة الثنائية لحماية حسابك وبيانات عملائك من الاختراق.",
+      },
+      {
+        title: "تحسين محركات البحث SEO",
+        body: "أدوات مدمجة لتحسين ظهور متجرك في جوجل، مع تخصيص العناوين والوصف والروابط لكل صفحة في الموقع.",
+      },
+      {
+        title: "دعم الذكاء الاصطناعي",
+        body: "توفر شوبيفاي أدوات AI متطورة لكتابة وصف المنتجات، التسويق الذكي، وتحليل سلوك العملاء، مما يمنحك مزايا تنافسية قوية على مستوى عالمي لأن شوبيفاي منصة عالمية دائماً مواكبة لأحدث التقنيات.",
+      },
+      {
+        title: "إحصائيات وتقارير شاملة",
+        body: "تقارير مفصلة عن المبيعات والزوار ومعدلات التحويل لاتخاذ قرارات مبنية على أرقام حقيقية.",
+      },
+      {
+        title: "مكتبة تطبيقات ضخمة",
+        body: "أكثر من 12,000 تطبيق لإضافة أي ميزة تحتاجها (تسويق، شحن، دفع، Bundles، Upsell، Cross-sell...) لزيادة المبيعات وتسهيل إدارتك للمتجر.",
+      },
+      {
+        title: "إدارة العملاء بذكاء",
+        body: "شوبيفاي تتيح لك بناء قاعدة بيانات قوية لعملائك، مع إمكانية تقسيمهم إلى شرائح حسب سلوك الشراء أو التكرار أو القيمة، مما يساعدك في استهداف كل شريحة بعروض وتسويق مخصص لزيادة المبيعات وبناء علاقات أقوى مع عملائك.",
+      },
+    ],
   },
   pricing: {
     pill: "001 — الأسعار",

@@ -696,6 +696,28 @@ html.lenis, html.lenis body { height: auto; }
 }
 .watermark span { font-family: var(--serif); font-style: italic; font-weight: 400; }
 
+/* ------------------------------------------------------------------ shopify features */
+.sf-head { margin-bottom: 8vh; text-align: center; }
+.sf-sub { margin: 22px auto 0; max-width: 46ch; }
+.sf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(16px, 2vw, 28px); }
+.sf-card { border-radius: 28px; padding: clamp(26px, 2.6vw, 36px); background: #fff; box-shadow: var(--shadow-card); }
+.sf-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px; }
+.sf-icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--btn-gradient);
+  color: #fff;
+  box-shadow: 0 18px 40px -18px rgba(20, 24, 26, 0.3);
+}
+.sf-num { padding: 8px 12px; border-radius: 999px; background: var(--surface-2); font-size: 11px; color: var(--sage); }
+.sf-card h3 { margin: 0 0 12px; font-family: var(--display); font-weight: 700; font-size: 22px; line-height: 1.3; letter-spacing: -0.03em; }
+.sf-card p { margin: 0; font-size: 15px; line-height: 1.75; color: var(--muted); }
+html[lang="ar"] .sf-card h3 { letter-spacing: 0; line-height: 1.5; }
+html[lang="ar"] .sf-card p { line-height: 1.95; }
+
 /* ------------------------------------------------------------------ Arabic / RTL */
 /* Letter-spacing breaks Arabic letter joining; keep it only on Latin (lang="en") runs. */
 html[lang="ar"] :is(.mono, .display, .label, .faq-text, .faq-num, .price, .metric-value, .trust-statement,
