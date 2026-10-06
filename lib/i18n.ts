@@ -82,6 +82,10 @@ const en: Dict = {
     title: { line1: "Premium custom websites", before: "for ", accent: "consumer", after: " brands" },
     tagline: "Live in 12 days, or you don't pay.",
     sub: "Beyond websites, we handle tech end to end — storefronts, integrations, automations and analytics — so ecommerce brands sell more with less friction.",
+    shopify: {
+      line: { line1: "Get your ecommerce website built by", accent: "a Shopify expert agency" },
+      badgeAlt: "Shopify Partners and Shopify Experts",
+    },
   },
   portfolio: {
     pill: "002 — Portfolio",
