@@ -43,17 +43,18 @@ export default function Portfolio({ t }: { t: Dict }) {
             </a>
           </div>
         </div>
-        <div className="pgrid">
-          <div id="pcol-a" className="pcol">
-            {colA.map((item) => (
-              <Card key={item.url} item={item} t={p} />
-            ))}
-          </div>
-          <div id="pcol-b" className="pcol pcol-b">
-            {colB.map((item) => (
-              <Card key={item.url} item={item} t={p} />
-            ))}
-          </div>
+      </div>
+      {/* Outside .wrap: the grid runs edge to edge with a small gutter. */}
+      <div className="pgrid">
+        <div id="pcol-a" className="pcol">
+          {colA.map((item) => (
+            <Card key={item.url} item={item} t={p} />
+          ))}
+        </div>
+        <div id="pcol-b" className="pcol pcol-b">
+          {colB.map((item) => (
+            <Card key={item.url} item={item} t={p} />
+          ))}
         </div>
       </div>
     </section>

@@ -314,8 +314,15 @@ html.lenis, html.lenis body { height: auto; }
   align-items: center;
   justify-content: center;
 }
-.pgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(20px, 3vw, 40px); }
-.pcol { display: flex; flex-direction: column; gap: clamp(20px, 3vw, 40px); will-change: transform; }
+/* Full-bleed: cancel the section padding, keep a small gutter around the cards. */
+.pgrid {
+  --pgap: clamp(10px, 1.2vw, 20px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--pgap);
+  margin-inline: calc(var(--pgap) - var(--px));
+}
+.pcol { display: flex; flex-direction: column; gap: var(--pgap); will-change: transform; }
 .pcol-b { padding-top: clamp(0px, 12vw, 180px); }
 .pcard {
   position: relative;
