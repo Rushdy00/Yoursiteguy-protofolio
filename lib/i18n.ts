@@ -26,7 +26,7 @@ export type Dict = {
   menu: { open: string; close: string; label: string };
   sound: { on: string; off: string; aria: string };
   cta: { apply: string; steps: [string, string, string]; scarcity: string };
-  hero: { eyebrow: string; title: Heading; tagline: string; sub: string; shopify?: { line: Heading; badges: string[] } };
+  hero: { eyebrow: string; title: Heading; tagline: string; sub: string; shopify?: { line: Heading; badgeAlt: string } };
   portfolio: { pill: string; title: Heading; intro: (count: number) => string; explore: string; cardAlt: (name: string) => string; arrow: string; exploreArrow: string };
   trust: { label: string; statement: Heading; figureAlt: string; projects: string };
   pricing: { pill: string; title: Heading; book: string; plans: [Plan, Plan] };
@@ -282,7 +282,7 @@ const ar: Dict = {
     sub: "بنعمل مواقع بتبيع لعملائك. ومش بس مواقع — إحنا بنمسك الجانب التقني كله من الأول للآخر: المتاجر، وربط الأنظمة، والأتمتة، والتحليلات، عشان البراندات الأونلاين تبيع أكتر بمجهود أقل.",
     shopify: {
       line: { line1: "احصل على موقع التجارة الإلكترونية الخاص بك بواسطة", accent: "وكالة خبيرة في Shopify" },
-      badges: ["Shopify Partner", "Shopify Expert"],
+      badgeAlt: "Shopify Partners و Shopify Experts",
     },
   },
   portfolio: {
