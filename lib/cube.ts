@@ -218,6 +218,7 @@ export async function createCube(canvas: HTMLCanvasElement, opts: Options): Prom
   let lastScroll = window.scrollY;
   const clock = new THREE.Clock();
   const start = document.getElementById("shopify");
+  const laptop = document.querySelector(".lt");
 
   const onResize = () => {
     renderer.setSize(window.innerWidth, window.innerHeight, false);
@@ -251,7 +252,10 @@ export async function createCube(canvas: HTMLCanvasElement, opts: Options): Prom
     const g = Math.max(0, Math.min(1, (scroll - startY) / Math.max(1, endY - startY)));
     const fadeIn = Math.max(0, Math.min(1, g / 0.05));
     const fadeOut = Math.max(0, Math.min(1, (1 - g) / 0.05));
-    const targetOp = fadeIn * fadeOut;
+    // steps aside while the laptop showcase is on screen, so it never covers the screenshots
+    const lr = laptop?.getBoundingClientRect();
+    const overLaptop = !!lr && lr.top < window.innerHeight * 0.9 && lr.bottom > window.innerHeight * 0.1;
+    const targetOp = overLaptop ? 0 : fadeIn * fadeOut;
     if (Math.abs(targetOp - layerOpacity) > 0.001) {
       layerOpacity += (targetOp - layerOpacity) * 0.12;
       canvas.style.opacity = layerOpacity.toFixed(3);

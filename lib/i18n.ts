@@ -30,7 +30,7 @@ export type Dict = {
   portfolio: { pill: string; title: Heading; intro: (count: number) => string; explore: string; cardAlt: (name: string) => string; arrow: string; exploreArrow: string };
   shopifyFeatures: { pill: string; title: Heading; sub: string; items: { title: string; body: string }[] };
   testimonials: { title: Heading; dotLabel: (i: number) => string; conversion: string; chart: { before: string; after: string }; items: Testimonial[] };
-  problem: { eyebrow: string; title: Heading; body: { before: string; strong: string; after: string }; figureAlt: string };
+  problem: { eyebrow: string; title: Heading; body: { before: string; strong: string; after: string }; badgeAlts: [string, string] };
   ready: { eyebrow: string; title: Heading; body: string };
   faq: { eyebrow: string; title: Heading; intro: string; items: { q: string; a: string }[] };
   marquee: string[];
@@ -169,7 +169,7 @@ const en: Dict = {
       strong: "Pretty is the baseline, not the product.",
       after: " The build starts with the funnel, then earns its looks.",
     },
-    figureAlt: "Client site shown on a laptop",
+    badgeAlts: ["Conversion rate before: 1.95%, down 6%", "Conversion rate after: 10%, up 146%"],
   },
   ready: {
     eyebrow: "005 — Ready to scale",
@@ -349,7 +349,7 @@ const ar: Dict = {
       strong: "الشكل الحلو ده الأساس، مش هو المنتج.",
       after: " إحنا بنبدأ من رحلة البيع، وبعدين نديله شكله الحلو.",
     },
-    figureAlt: "موقع لعميل على شاشة لابتوب",
+    badgeAlts: ["معدل التحويل قبل: 1.95%، نزل 6%", "معدل التحويل بعد: 10%، زاد 146%"],
   },
   ready: {
     eyebrow: "005 — جاهز تكبر",

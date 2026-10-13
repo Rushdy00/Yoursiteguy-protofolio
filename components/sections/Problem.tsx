@@ -1,9 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
 import type { Dict } from "@/lib/i18n";
+import { imageFor, PORTFOLIO } from "@/lib/portfolio";
+import { LaptopShowcase } from "../LaptopShowcase";
 import { CtaBlock, Eyebrow, HeadingText } from "../ui";
 
 export default function Problem({ t }: { t: Dict }) {
   const p = t.problem;
+  const shots = PORTFOLIO.map((s) => ({ src: imageFor(s), name: s.name, alt: t.portfolio.cardAlt(s.name) }));
   return (
     <section id="problem" className="problem">
       <div
@@ -28,7 +30,7 @@ export default function Problem({ t }: { t: Dict }) {
           background: "radial-gradient(closest-side, rgba(255,214,214,0.5), rgba(255,214,214,0))",
         }}
       />
-      <div className="wrap" style={{ position: "relative", maxWidth: 1100 }}>
+      <div className="wrap" style={{ position: "relative", maxWidth: 1240 }}>
         <Eyebrow>{p.eyebrow}</Eyebrow>
         <h2 data-rv="" className="display">
           <HeadingText h={p.title} />
@@ -38,9 +40,9 @@ export default function Problem({ t }: { t: Dict }) {
           <strong>{p.body.strong}</strong>
           {p.body.after}
         </p>
-        <figure data-rv="">
-          <img src="/img/laptop.png" alt={p.figureAlt} loading="lazy" />
-        </figure>
+        <div data-rv="" className="lt-wrap">
+          <LaptopShowcase shots={shots} badgeAlts={p.badgeAlts} />
+        </div>
         <CtaBlock t={t.cta} style={{ marginTop: "8vh" }} />
       </div>
     </section>
