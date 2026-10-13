@@ -539,6 +539,10 @@ html.lenis, html.lenis body { height: auto; }
 .marquee-group { display: flex; gap: 40px; padding-inline-end: 40px; font-size: 12px; color: var(--sage); white-space: nowrap; }
 
 /* ------------------------------------------------------------------ footer */
+/* Curtain reveal (components/FooterReveal.tsx): the footer is pinned behind <main>, which slides off it. */
+.main { position: relative; z-index: 10; background: var(--bg); }
+.footer-reveal .main { margin-bottom: var(--footer-h, 0px); box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.28); }
+.footer-reveal .footer { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1; will-change: filter, opacity; }
 .footer {
   position: relative;
   overflow: hidden;

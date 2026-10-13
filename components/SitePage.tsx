@@ -1,3 +1,4 @@
+import FooterReveal from "@/components/FooterReveal";
 import Header from "@/components/Header";
 import MotionLayer from "@/components/MotionLayer";
 import Reveals from "@/components/Reveals";
@@ -20,7 +21,7 @@ export default function SitePage({ locale }: { locale: Locale }) {
       <SoundToggle t={t.sound} />
       <Reveals />
 
-      <main id="top" style={{ position: "relative", zIndex: 10 }}>
+      <main id="top" className="main">
         <Hero t={t} />
         <Portfolio t={t} />
         <ShopifyFeatures t={t} />
@@ -28,8 +29,9 @@ export default function SitePage({ locale }: { locale: Locale }) {
         <Ready t={t} />
         <Faq t={t} />
         <Marquee t={t} />
-        <Footer t={t} />
       </main>
+      <Footer t={t} />
+      <FooterReveal />
     </div>
   );
 }
