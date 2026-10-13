@@ -16,12 +16,13 @@ export const PRICES = [
   { price: "$14,000", addon: "+$3,500" },
 ];
 
-// Placeholder testimonials; matches dict.testimonials.items by index.
+// Matches dict.testimonials.items by index. `site` is a lib/portfolio.json url (its screenshot is shown).
+// Names, quotes and metrics are still placeholders.
 export const TESTIMONIAL_DATA = [
-  { name: "Ida Halden", images: ["mock-01.png", "mock-03.png"], value: "4.8%", delta: "↗ 146%", points: "0,26 18,20 34,23 52,14 70,16 88,8 106,10 120,3" },
-  { name: "Petter Nord", images: ["mock-04.png", "mock-05.png"], value: "$3.42", delta: "↗ 88%", points: "0,24 18,25 34,18 52,19 70,11 88,13 106,6 120,5" },
-  { name: "Mara Sable", images: ["mock-06.png", "mock-02.png"], value: "1,204", delta: "↗ 212%", points: "0,27 18,22 34,24 52,16 70,12 88,12 106,7 120,2" },
-  { name: "Joss Lume", images: ["mock-02.png", "mock-01.png"], value: "3.9×", delta: "↗ 61%", points: "0,22 18,24 34,17 52,18 70,13 88,9 106,11 120,4" },
+  { name: "Ida Halden", site: "https://leilofficial.shop/", value: "4.8%", delta: "↗ 146%", points: "0,26 18,20 34,23 52,14 70,16 88,8 106,10 120,3" },
+  { name: "Petter Nord", site: "https://www.ferminastore.com/en-eg", value: "$3.42", delta: "↗ 88%", points: "0,24 18,25 34,18 52,19 70,11 88,13 106,6 120,5" },
+  { name: "Mara Sable", site: "https://mesuioghanem.com/", value: "1,204", delta: "↗ 212%", points: "0,27 18,22 34,24 52,16 70,12 88,12 106,7 120,2" },
+  { name: "Joss Lume", site: "https://dubaicosmeticsusa.com/", value: "3.9×", delta: "↗ 61%", points: "0,22 18,24 34,17 52,18 70,13 88,9 106,11 120,4" },
 ];
 
 // Cube / motion tunables (ranges from the handoff in comments).

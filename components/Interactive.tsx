@@ -175,7 +175,7 @@ export function Carousel({ slides, dotLabels }: { slides: Slide[]; dotLabels: st
               <div className="slide-imgs">
                 {t.images.map((img) => (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img key={img.alt} src={`/img/${img.src}`} alt={img.alt} draggable={false} loading="lazy" />
+                  <img key={img.alt} src={img.src} alt={img.alt} draggable={false} loading="lazy" />
                 ))}
               </div>
               <p className="slide-quote">{t.quote}</p>

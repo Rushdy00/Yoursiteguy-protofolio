@@ -2,6 +2,7 @@
 import type { Dict } from "@/lib/i18n";
 import { imageFor, PORTFOLIO, type PortfolioItem } from "@/lib/portfolio";
 import { HeadingText, PillLabel } from "../ui";
+import Testimonials from "./Testimonials";
 
 function Card({ item, t }: { item: PortfolioItem; t: Dict["portfolio"] }) {
   return (
@@ -57,6 +58,7 @@ export default function Portfolio({ t }: { t: Dict }) {
           ))}
         </div>
       </div>
+      <Testimonials t={t} />
     </section>
   );
 }

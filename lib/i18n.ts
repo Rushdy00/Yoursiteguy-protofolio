@@ -6,7 +6,7 @@ export type Locale = "en" | "ar";
 /** A heading with an italic-serif accent word: `{line1}<br/>{before}<accent>{after}`. */
 export type Heading = { line1?: string; before?: string; accent: string; after?: string };
 
-type Testimonial = { quote: string; role: string; metric: string; alts: [string, string] };
+type Testimonial = { quote: string; role: string; metric: string };
 type Plan = {
   title: string;
   desc: string;
@@ -192,25 +192,21 @@ const en: Dict = {
         quote: '"We stopped explaining ourselves. The site does it, and the checkout numbers moved in a week."',
         role: "Founder, Halden",
         metric: "Add to cart rate",
-        alts: ["Halden Type site, desktop view", "Halden Type site, second view"],
       },
       {
         quote: '"Twelve days, start to launch, and it looks nothing like our competitors. That was the whole brief."',
         role: "CMO, Norr",
         metric: "Revenue per session",
-        alts: ["Norr Atelier site, desktop view", "Norr Atelier site, second view"],
       },
       {
         quote: '"He found the leak in our funnel before he opened a design file. Then he fixed both."',
         role: "Owner, Sable",
         metric: "Subscription signups",
-        alts: ["Sable Roasters site, desktop view", "Sable Roasters site, second view"],
       },
       {
         quote: '"Our ad spend finally lands somewhere that sells. Same traffic, very different month."',
         role: "Founder, Lume",
         metric: "Blended ROAS",
-        alts: ["Lume Skincare site, desktop view", "Lume Skincare site, second view"],
       },
     ],
   },
@@ -440,25 +436,21 @@ const ar: Dict = {
         quote: "«بطّلنا نشرح نفسنا. الموقع بقى بيعمل ده بدالنا، وأرقام الدفع اتحرّكت في أسبوع.»",
         role: "المؤسِّسة، Halden",
         metric: "نسبة الإضافة للسلة",
-        alts: ["موقع Halden، شكل الديسكتوب", "موقع Halden، لقطة تانية"],
       },
       {
         quote: "«12 يوم من البداية للإطلاق، والموقع مش شبه أي حد من المنافسين. وده كان المطلوب بالظبط.»",
         role: "مدير التسويق، Norr",
         metric: "الإيراد لكل زيارة",
-        alts: ["موقع Norr، شكل الديسكتوب", "موقع Norr، لقطة تانية"],
       },
       {
         quote: "«لقى المشكلة في رحلة البيع قبل ما يفتح أي ملف تصميم. وبعدين صلّح الاتنين.»",
         role: "صاحبة البراند، Sable",
         metric: "اشتراكات جديدة",
-        alts: ["موقع Sable، شكل الديسكتوب", "موقع Sable، لقطة تانية"],
       },
       {
         quote: "«فلوس الإعلانات أخيرًا بقت بتروح لمكان بيبيع. نفس الزيارات، بس شهر مختلف خالص.»",
         role: "المؤسِّس، Lume",
         metric: "العائد على الإعلانات",
-        alts: ["موقع Lume، شكل الديسكتوب", "موقع Lume، لقطة تانية"],
       },
     ],
   },

@@ -472,7 +472,8 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* ------------------------------------------------------------------ testimonials */
-.testimonials { padding: 12vh 0; }
+/* Lives inside #portfolio: cancel the section padding (full-bleed) and clear the parallax travel. */
+.testimonials { margin: clamp(12vh, 24vw, 300px) calc(-1 * var(--px)) 0; }
 .testimonials h2 { margin: 0 0 6vh; font-size: clamp(30px, 4vw, 56px); line-height: 0.98; }
 .carousel { overflow: hidden; padding: 0 var(--px); cursor: grab; touch-action: pan-y; }
 .carousel.is-dragging { cursor: grabbing; }
@@ -490,6 +491,7 @@ html.lenis, html.lenis body { height: auto; }
 .slide-imgs img { border-radius: 10px; display: block; }
 .slide-imgs img:first-child { width: 62%; }
 .slide-imgs img:last-child { width: 38%; object-fit: cover; }
+.slide-imgs img:only-child { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; }
 .slide-quote { margin: 0 0 18px; font-family: var(--serif); font-style: italic; font-size: 19px; line-height: 1.4; }
 .slide-who { margin: 0 0 22px; font-size: 13px; }
 .slide-who b { font-weight: 700; }
