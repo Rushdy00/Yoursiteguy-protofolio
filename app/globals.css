@@ -492,6 +492,12 @@ html.lenis, html.lenis body { height: auto; }
 .slide-imgs img:first-child { width: 62%; }
 .slide-imgs img:last-child { width: 38%; object-fit: cover; }
 .slide-imgs img:only-child { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; }
+/* Site-only slide: the screenshot grows to fill the card height set by the tallest slide. */
+.slide-site { display: flex; flex-direction: column; }
+.slide-site .slide-imgs { flex: 1; min-height: 0; }
+.slide-site .slide-imgs img:only-child { aspect-ratio: auto; min-height: 250px; }
+.slide-site .slide-who { margin: 0; }
+.slide-site a.slide-role:hover { color: var(--sage); }
 .slide-quote { margin: 0 0 18px; font-family: var(--serif); font-style: italic; font-size: 19px; line-height: 1.4; }
 .slide-who { margin: 0 0 22px; font-size: 13px; }
 .slide-who b { font-weight: 700; }

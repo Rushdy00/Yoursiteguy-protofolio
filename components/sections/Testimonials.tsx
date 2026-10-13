@@ -5,7 +5,7 @@ import { Carousel, type Slide } from "../Interactive";
 import { HeadingText } from "../ui";
 
 export default function Testimonials({ t }: { t: Dict }) {
-  const slides: Slide[] = TESTIMONIAL_DATA.map((d, i) => {
+  const withQuote: Slide[] = TESTIMONIAL_DATA.map((d, i) => {
     const text = t.testimonials.items[i];
     const site = PORTFOLIO.find((p) => p.url === d.site)!;
     return {
@@ -16,6 +16,13 @@ export default function Testimonials({ t }: { t: Dict }) {
       metric: { label: text.metric, value: d.value, delta: d.delta, points: d.points },
     };
   });
+  // The rest of the portfolio follows as site-only slides (screenshot + link).
+  const rest: Slide[] = PORTFOLIO.filter((p) => !TESTIMONIAL_DATA.some((d) => d.site === p.url)).map((p) => ({
+    name: p.name,
+    images: [{ src: imageFor(p), alt: t.portfolio.cardAlt(p.name) }],
+    link: { href: p.url, label: new URL(p.url).hostname.replace(/^www\./, "") },
+  }));
+  const slides = [...withQuote, ...rest];
   const dotLabels = slides.map((_, i) => t.testimonials.dotLabel(i + 1));
 
   return (

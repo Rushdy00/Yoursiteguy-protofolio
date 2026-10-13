@@ -98,10 +98,12 @@ export function FaqList({ items }: { items: { q: string; a: string }[] }) {
 
 export type Slide = {
   name: string;
-  role: string;
-  quote: string;
   images: { src: string; alt: string }[];
-  metric: { label: string; value: string; delta: string; points: string };
+  // Site-only slides (no testimonial yet) carry a link instead of quote/role/metric.
+  link?: { href: string; label: string };
+  role?: string;
+  quote?: string;
+  metric?: { label: string; value: string; delta: string; points: string };
 };
 
 export function Carousel({ slides, dotLabels }: { slides: Slide[]; dotLabels: string[] }) {
@@ -171,17 +173,24 @@ export function Carousel({ slides, dotLabels }: { slides: Slide[]; dotLabels: st
       >
         <div ref={trackRef} className="carousel-track">
           {slides.map((t) => (
-            <article key={t.name} className="slide">
+            <article key={t.name} className={`slide${t.quote ? "" : " slide-site"}`}>
               <div className="slide-imgs">
                 {t.images.map((img) => (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img key={img.alt} src={img.src} alt={img.alt} draggable={false} loading="lazy" />
                 ))}
               </div>
-              <p className="slide-quote">{t.quote}</p>
+              {t.quote && <p className="slide-quote">{t.quote}</p>}
               <p className="slide-who">
-                <b>{t.name}</b> <span className="slide-role">| {t.role}</span>
+                <b lang={t.link ? "en" : undefined}>{t.name}</b>{" "}
+                {t.role && <span className="slide-role">| {t.role}</span>}
+                {t.link && (
+                  <a href={t.link.href} target="_blank" rel="noopener noreferrer" className="slide-role" lang="en" draggable={false}>
+                    | {t.link.label}
+                  </a>
+                )}
               </p>
+              {t.metric && (
               <div className="metric">
                 <p className="metric-label mono">
                   {t.metric.label}
@@ -195,6 +204,7 @@ export function Carousel({ slides, dotLabels }: { slides: Slide[]; dotLabels: st
                   <polyline points={t.metric.points} fill="none" stroke="#2C332F" strokeWidth="2" />
                 </svg>
               </div>
+              )}
             </article>
           ))}
         </div>
