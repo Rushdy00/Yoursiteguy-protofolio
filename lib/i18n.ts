@@ -177,8 +177,8 @@ const en: Dict = {
     intro: "If yours isn't here, email me — you'll get an answer from me, not a form response.",
     items: [
       {
-        q: "How do you launch so fast?",
-        a: "Because the scope is fixed before we start and there's no handoff layer — one person designs and builds, so nothing waits in a queue.",
+        q: "How fast do you launch the website?",
+        a: "Within two weeks at most, depending on the project. The scope is fixed before we start and there's no handoff layer — one person designs and builds, so nothing waits in a queue.",
       },
       {
         q: "Do you write the copy?",
@@ -348,8 +348,8 @@ const ar: Dict = {
     intro: "لو سؤالك مش موجود هنا، ابعتلي إيميل — الرد هيوصلك منّي أنا شخصيًا، مش رد أوتوماتيك.",
     items: [
       {
-        q: "إزاي بتطلّع الموقع بالسرعة دي؟",
-        a: "لأن نطاق الشغل بيتحدد قبل ما نبدأ، ومفيش تسليم من فريق لفريق — شخص واحد بيصمّم وبينفّذ، فمفيش حاجة بتستنى في طابور.",
+        q: "الموقع بيجهز في قد إيه؟",
+        a: "في خلال أسبوعين بالكتير، وده بيختلف حسب المشروع. نطاق الشغل بيتحدد قبل ما نبدأ، ومفيش تسليم من فريق لفريق — شخص واحد بيصمّم وبينفّذ، فمفيش حاجة بتستنى في طابور.",
       },
       {
         q: "إنت اللي بتكتب المحتوى؟",
