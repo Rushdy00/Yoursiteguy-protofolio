@@ -55,7 +55,7 @@ const en: Dict = {
   meta: {
     title: "yoursiteguy Creative — Premium custom websites for consumer brands",
     description:
-      "Conversion-focused websites and end-to-end tech for ecommerce brands — storefronts, integrations, automations and analytics. Live in 12 days, or you don't pay.",
+      "Conversion-focused websites and end-to-end tech for ecommerce brands — storefronts, integrations, automations and analytics. Designed, built and launched fast.",
   },
   langSwitch: { label: "عربي", href: "/ar/", aria: "اقرأ الموقع بالعربية" },
   nav: nav(["Portfolio", "Shopify", "FAQ"]),
@@ -79,7 +79,7 @@ const en: Dict = {
     title: { before: "Engineered for ", accent: "conversions" },
     intro: (n) => {
       const words = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
-      return `${words[n] ?? n} builds, one pattern: strip the friction, sharpen the offer, let the design carry the argument. Every site below shipped inside two weeks.`;
+      return `${words[n] ?? n} builds, one pattern: strip the friction, sharpen the offer, let the design carry the argument. Every site below shipped fast.`;
     },
     explore: "Explore full portfolio",
     cardAlt: (name) => `${name} website`,
@@ -145,7 +145,7 @@ const en: Dict = {
         metric: "Add to cart rate",
       },
       {
-        quote: '"Twelve days, start to launch, and it looks nothing like our competitors. That was the whole brief."',
+        quote: '"Launched fast, and it looks nothing like our competitors. That was the whole brief."',
         role: "CMO, Norr",
         metric: "Revenue per session",
       },
@@ -177,12 +177,8 @@ const en: Dict = {
     intro: "If yours isn't here, email me — you'll get an answer from me, not a form response.",
     items: [
       {
-        q: "How can you launch in twelve days?",
+        q: "How do you launch so fast?",
         a: "Because the scope is fixed before we start and there's no handoff layer — one person designs and builds, so nothing waits in a queue.",
-      },
-      {
-        q: "What happens if you miss the deadline?",
-        a: "You don't pay. The only exception is a delay on your side — missing content or approvals pauses the clock, and I'll tell you the moment it happens.",
       },
       {
         q: "Do you write the copy?",
@@ -229,7 +225,7 @@ const ar: Dict = {
   meta: {
     title: "yoursiteguy Creative — مواقع فاخرة متفصّلة على مقاس البراند بتاعك",
     description:
-      "مواقع معمولة عشان تبيع، وحلول تقنية كاملة للمتاجر الأونلاين — المتاجر، وربط الأنظمة، والأتمتة، والتحليلات. الموقع جاهز في 12 يوم، أو مش هتدفع حاجة.",
+      "مواقع معمولة عشان تبيع، وحلول تقنية كاملة للمتاجر الأونلاين — المتاجر، وربط الأنظمة، والأتمتة، والتحليلات. تصميم وتنفيذ وإطلاق بسرعة.",
   },
   langSwitch: { label: "EN", href: "/", aria: "Read this site in English" },
   nav: nav(["شغلنا", "شوبيفاي", "أسئلة متكررة"]),
@@ -243,7 +239,7 @@ const ar: Dict = {
   hero: {
     eyebrow: "000 — حلول تقنية تكبّر تجارتك الأونلاين",
     title: { line1: "مواقع فاخرة متفصّلة", before: "على مقاس ", accent: "البراند", after: " بتاعك" },
-    tagline: "الموقع جاهز في 12 يوم، أو مش هتدفع حاجة.",
+    tagline: "موقعك جاهز بسرعة، ومن غير تعطيل.",
     sub: "بنعمل مواقع بتبيع لعملائك. ومش بس مواقع — إحنا بنمسك الجانب التقني كله من الأول للآخر: المتاجر، وربط الأنظمة، والأتمتة، والتحليلات، عشان البراندات الأونلاين تبيع أكتر بمجهود أقل.",
     shopify: {
       line: { line1: "احصل على موقع التجارة الإلكترونية الخاص بك بواسطة", accent: "وكالة خبيرة في Shopify" },
@@ -255,7 +251,7 @@ const ar: Dict = {
     title: { before: "معمولة عشان ", accent: "تبيع" },
     // 3–10 → مشاريع, 11+ → مشروع (Egyptian usage).
     intro: (n) =>
-      `${n <= 10 ? `${n} مشاريع` : `${n} مشروع`}، والطريقة واحدة: نشيل أي حاجة بتعطّل العميل، نقوّي العرض، ونسيب التصميم هو اللي يقنع. كل موقع هنا اتسلّم في أقل من أسبوعين.`,
+      `${n <= 10 ? `${n} مشاريع` : `${n} مشروع`}، والطريقة واحدة: نشيل أي حاجة بتعطّل العميل، نقوّي العرض، ونسيب التصميم هو اللي يقنع. كل موقع هنا اتسلّم بسرعة.`,
     explore: "شوف كل الشغل",
     cardAlt: (name) => `موقع ${name}`,
     arrow: "↖",
@@ -320,7 +316,7 @@ const ar: Dict = {
         metric: "نسبة الإضافة للسلة",
       },
       {
-        quote: "«12 يوم من البداية للإطلاق، والموقع مش شبه أي حد من المنافسين. وده كان المطلوب بالظبط.»",
+        quote: "«الموقع اتسلّم بسرعة، ومش شبه أي حد من المنافسين. وده كان المطلوب بالظبط.»",
         role: "مدير التسويق، Norr",
         metric: "الإيراد لكل زيارة",
       },
@@ -352,12 +348,8 @@ const ar: Dict = {
     intro: "لو سؤالك مش موجود هنا، ابعتلي إيميل — الرد هيوصلك منّي أنا شخصيًا، مش رد أوتوماتيك.",
     items: [
       {
-        q: "إزاي تقدر تطلّع الموقع في 12 يوم؟",
+        q: "إزاي بتطلّع الموقع بالسرعة دي؟",
         a: "لأن نطاق الشغل بيتحدد قبل ما نبدأ، ومفيش تسليم من فريق لفريق — شخص واحد بيصمّم وبينفّذ، فمفيش حاجة بتستنى في طابور.",
-      },
-      {
-        q: "لو اتأخرت عن الميعاد، إيه اللي هيحصل؟",
-        a: "مش هتدفع. الاستثناء الوحيد لو التأخير من عندك — لو المحتوى أو الموافقات اتأخرت العدّاد بيقف، وهبلّغك أول ما ده يحصل.",
       },
       {
         q: "إنت اللي بتكتب المحتوى؟",
