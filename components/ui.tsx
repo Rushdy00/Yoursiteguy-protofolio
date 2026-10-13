@@ -43,11 +43,11 @@ export function PillLabel({ children, style }: { children: ReactNode; style?: Re
   );
 }
 
-/** Apply button + 3 steps + scarcity line. Used in 4 sections. */
+/** WhatsApp button + 3 steps + scarcity line. Used in the hero, problem and ready sections. */
 export function CtaBlock({ t, style }: { t: Dict["cta"]; style?: React.CSSProperties }) {
   return (
     <div data-rv="" className="cta" style={style}>
-      <a href={APPLY_HREF} className="btn-primary mono">
+      <a href={APPLY_HREF} target="_blank" rel="noopener noreferrer" className="btn-primary mono">
         {t.apply}
       </a>
       <p className="cta-steps mono">

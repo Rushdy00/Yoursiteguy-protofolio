@@ -217,7 +217,7 @@ export async function createCube(canvas: HTMLCanvasElement, opts: Options): Prom
   let layerOpacity = 0;
   let lastScroll = window.scrollY;
   const clock = new THREE.Clock();
-  const trust = document.getElementById("trust");
+  const start = document.getElementById("shopify");
 
   const onResize = () => {
     renderer.setSize(window.innerWidth, window.innerHeight, false);
@@ -244,9 +244,9 @@ export async function createCube(canvas: HTMLCanvasElement, opts: Options): Prom
   const frame = (scroll: number) => {
     const time = clock.getElapsedTime();
 
-    // one continuous journey: starts at the partner section, ends before the footer
+    // one continuous journey: starts at the Shopify section, ends before the footer
     const docH = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    const startY = trust ? Math.max(0, trust.offsetTop - window.innerHeight * 0.6) : docH * 0.12;
+    const startY = start ? Math.max(0, start.offsetTop - window.innerHeight * 0.6) : docH * 0.12;
     const endY = docH * 0.97;
     const g = Math.max(0, Math.min(1, (scroll - startY) / Math.max(1, endY - startY)));
     const fadeIn = Math.max(0, Math.min(1, g / 0.05));

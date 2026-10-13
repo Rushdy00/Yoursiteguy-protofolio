@@ -2,19 +2,11 @@
 // Items marked "placeholder" in the design handoff are flagged inline.
 
 export const CONTACT_EMAIL = "hello@yoursiteguy.com";
-// TODO: replace with the real application form / Calendly route when available.
-export const APPLY_HREF = `mailto:${CONTACT_EMAIL}`;
+// Every CTA button opens a WhatsApp chat. Digits only, with country code (no "+", spaces or leading zeros).
+export const WHATSAPP_NUMBER = "201004247113";
+export const APPLY_HREF = `https://wa.me/${WHATSAPP_NUMBER}`;
 // TODO: replace with the real Instagram handle.
 export const INSTAGRAM_HREF = "https://instagram.com";
-
-// Placeholder client names.
-export const TRUST_NAMES = ["Halden", "Norr", "Sable", "Meridian", "Lume"];
-
-// Matches dict.pricing.plans by index.
-export const PRICES = [
-  { price: "$6,400", addon: "+$2,000" },
-  { price: "$14,000", addon: "+$3,500" },
-];
 
 // Matches dict.testimonials.items by index. `site` is a lib/portfolio.json url (its screenshot is shown).
 // Names, quotes and metrics are still placeholders.

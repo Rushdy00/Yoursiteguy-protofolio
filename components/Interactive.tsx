@@ -4,18 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { prefersReducedMotion } from "@/lib/motion";
 import { ConversionMetric, type ChartData } from "./ConversionChart";
 
-/* ------------------------------------------------ pricing add-on switch */
-
-// Visual only for now — the price does not change when toggled.
-export function AddonSwitch({ label }: { label: string }) {
-  const [on, setOn] = useState(false);
-  return (
-    <button type="button" className="switch" aria-pressed={on} aria-label={label} onClick={() => setOn((v) => !v)}>
-      <span className="switch-knob" aria-hidden="true" />
-    </button>
-  );
-}
-
 /* ------------------------------------------------ footer clocks */
 
 const fmt = (timeZone?: string) =>

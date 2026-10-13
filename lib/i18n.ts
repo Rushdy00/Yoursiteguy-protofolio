@@ -28,22 +28,10 @@ export type Dict = {
   cta: { apply: string; steps: [string, string, string]; scarcity: string };
   hero: { eyebrow: string; title: Heading; tagline?: string; sub?: string; shopify?: { line: Heading; badgeAlt: string } };
   portfolio: { pill: string; title: Heading; intro: (count: number) => string; explore: string; cardAlt: (name: string) => string; arrow: string; exploreArrow: string };
-  trust: { label: string; statement: Heading; figureAlt: string; projects: string };
   shopifyFeatures: { pill: string; title: Heading; sub: string; items: { title: string; body: string }[] };
-  pricing: { pill: string; title: Heading; book: string; plans: [Plan, Plan] };
   testimonials: { title: Heading; dotLabel: (i: number) => string; conversion: string; chart: { before: string; after: string }; items: Testimonial[] };
   problem: { eyebrow: string; title: Heading; body: { before: string; strong: string; after: string }; figureAlt: string };
-  blueprint: {
-    eyebrow: string;
-    title: Heading;
-    steps: [Step, Step, Step];
-    chips: [string, string, string];
-    adPills: [string, string, string];
-    funnel: [string, string, string, string];
-    status: string;
-    statusChip: string;
-  };
-  ready: { eyebrow: string; title: Heading; body: string; collageAlts: [string, string, string] };
+  ready: { eyebrow: string; title: Heading; body: string };
   faq: { eyebrow: string; title: Heading; intro: string; items: { q: string; a: string }[] };
   marquee: string[];
   footer: {
@@ -58,7 +46,7 @@ export type Dict = {
   };
 };
 
-const NAV_HREFS = ["#portfolio", "#pricing", "#blueprint", "#faq"];
+const NAV_HREFS = ["#portfolio", "#shopify", "#faq"];
 const nav = (labels: string[]) => labels.map((label, i) => ({ href: NAV_HREFS[i], label }));
 
 const en: Dict = {
@@ -70,13 +58,13 @@ const en: Dict = {
       "Conversion-focused websites and end-to-end tech for ecommerce brands — storefronts, integrations, automations and analytics. Live in 12 days, or you don't pay.",
   },
   langSwitch: { label: "عربي", href: "/ar/", aria: "اقرأ الموقع بالعربية" },
-  nav: nav(["Portfolio", "Pricing", "Blueprint", "FAQ"]),
+  nav: nav(["Portfolio", "Shopify", "FAQ"]),
   menu: { open: "Open menu", close: "Close menu", label: "Menu" },
   sound: { on: "Sound on", off: "Sound off", aria: "Toggle motion sound" },
   cta: {
-    apply: "Apply for a build",
-    steps: ["Short form", "Quick call", "More sales"],
-    scarcity: "Apply now — only a few slots remaining",
+    apply: "Message me on WhatsApp",
+    steps: ["Quick message", "Quick call", "More sales"],
+    scarcity: "Message now — only a few slots remaining",
   },
   hero: {
     eyebrow: "000 — Tech solutions for ecommerce growth",
@@ -97,12 +85,6 @@ const en: Dict = {
     cardAlt: (name) => `${name} website`,
     arrow: "↗",
     exploreArrow: "→",
-  },
-  trust: {
-    label: "We are certified",
-    statement: { before: "Shopify and Webflow partner builds, measured against ", accent: "revenue, not applause." },
-    figureAlt: "Client revenue dashboard after launch",
-    projects: "Projects delivered",
   },
   shopifyFeatures: {
     pill: "Why Shopify",
@@ -151,39 +133,6 @@ const en: Dict = {
       },
     ],
   },
-  pricing: {
-    pill: "001 — Pricing",
-    title: { before: "Built to ", accent: "convert." },
-    book: "Book a call",
-    plans: [
-      {
-        title: "Conversion site",
-        desc: "A five-page build engineered around one action.",
-        suffix: "/starting",
-        addon: "Custom product visuals",
-        addonAria: "Add custom product visuals",
-        features: [
-          "Five pages, fully bespoke",
-          "Copy structure and offer framing",
-          "Analytics and event tracking",
-          "12-day delivery or it's free",
-        ],
-      },
-      {
-        title: "Full commerce",
-        desc: "Storefront, PDP system, and checkout flow.",
-        suffix: "/fixed",
-        addon: "Motion & WebGL layer",
-        addonAria: "Add motion and WebGL layer",
-        features: [
-          "Design system and component library",
-          "Product page templates",
-          "Checkout and cart optimisation",
-          "Six weeks post-launch support",
-        ],
-      },
-    ],
-  },
   testimonials: {
     title: { before: "Receipts, not ", accent: "adjectives." },
     dotLabel: (i) => `Go to testimonial ${i}`,
@@ -222,37 +171,10 @@ const en: Dict = {
     },
     figureAlt: "Client site shown on a laptop",
   },
-  blueprint: {
-    eyebrow: "004 — The blueprint",
-    title: { before: "Improve ad results in ", accent: "3 simple steps." },
-    steps: [
-      {
-        title: "Direction, decided in one pass",
-        body: "A single moodboard, three named directions, one chosen. No committee rounds, no drift.",
-        alt: "Chosen direction applied to a product page",
-      },
-      {
-        title: "Creative that stops the scroll",
-        body: "The page and the ad are built as one system, so the promise in the feed survives the click.",
-        alt: "Ad creative built from the site design",
-      },
-      {
-        title: "One path, measured end to end",
-        body: "Land, hook, trust, buy — every step instrumented, so the next change is evidence, not opinion.",
-        alt: "Funnel analytics dashboard for a client build",
-      },
-    ],
-    chips: ["Aesthetic Editorial", "Flow Frictionless", "Offer Magnetic"],
-    adPills: ["Scroll-stop", "Convert", "Shop now"],
-    funnel: ["Land", "Hook", "Trust", "Buy"],
-    status: "Path optimized",
-    statusChip: "Click → Checkout",
-  },
   ready: {
     eyebrow: "005 — Ready to scale",
     title: { before: "Your next site should pay for ", accent: "itself." },
-    body: "Two build slots open each month. Send the form, we talk for twenty minutes, and you get a plan whether or not you hire me.",
-    collageAlts: ["Client site collage, one", "Client site collage, two", "Client site collage, three"],
+    body: "Two build slots open each month. Message me on WhatsApp, we talk for twenty minutes, and you get a plan whether or not you hire me.",
   },
   faq: {
     eyebrow: "006 — FAQ",
@@ -315,13 +237,13 @@ const ar: Dict = {
       "مواقع معمولة عشان تبيع، وحلول تقنية كاملة للمتاجر الأونلاين — المتاجر، وربط الأنظمة، والأتمتة، والتحليلات. الموقع جاهز في 12 يوم، أو مش هتدفع حاجة.",
   },
   langSwitch: { label: "EN", href: "/", aria: "Read this site in English" },
-  nav: nav(["شغلنا", "الأسعار", "خطة الشغل", "أسئلة متكررة"]),
+  nav: nav(["شغلنا", "شوبيفاي", "أسئلة متكررة"]),
   menu: { open: "فتح القائمة", close: "قفل القائمة", label: "القائمة" },
   sound: { on: "الصوت شغّال", off: "الصوت مقفول", aria: "تشغيل أو قفل صوت الحركة" },
   cta: {
-    apply: "قدّم دلوقتي",
-    steps: ["فورم قصير", "مكالمة سريعة", "مبيعات أكتر"],
-    scarcity: "قدّم دلوقتي — الأماكن المتاحة قليلة",
+    apply: "كلّمني على واتساب",
+    steps: ["رسالة سريعة", "مكالمة سريعة", "مبيعات أكتر"],
+    scarcity: "كلّمني دلوقتي — الأماكن المتاحة قليلة",
   },
   hero: {
     eyebrow: "000 — حلول تقنية تكبّر تجارتك الأونلاين",
@@ -343,12 +265,6 @@ const ar: Dict = {
     cardAlt: (name) => `موقع ${name}`,
     arrow: "↖",
     exploreArrow: "←",
-  },
-  trust: {
-    label: "شركاء معتمدين",
-    statement: { before: "مواقع بنبنيها كشركاء معتمدين من Shopify و Webflow، ومقياسنا ", accent: "المبيعات مش التصفيق." },
-    figureAlt: "داشبورد مبيعات عميل بعد الإطلاق",
-    projects: "مشروع اتسلّم",
   },
   shopifyFeatures: {
     pill: "ليه شوبيفاي",
@@ -397,39 +313,6 @@ const ar: Dict = {
       },
     ],
   },
-  pricing: {
-    pill: "001 — الأسعار",
-    title: { before: "معمول ", accent: "عشان يبيع." },
-    book: "احجز مكالمة",
-    plans: [
-      {
-        title: "موقع بيحوّل",
-        desc: "موقع من خمس صفحات متصمّم حوالين هدف واحد.",
-        suffix: "/بداية من",
-        addon: "صور منتجات مخصوصة",
-        addonAria: "إضافة صور منتجات مخصوصة",
-        features: [
-          "خمس صفحات بتصميم خاص بالكامل",
-          "ترتيب المحتوى وصياغة العرض",
-          "تحليلات وتتبّع لكل خطوة",
-          "تسليم في 12 يوم أو ببلاش",
-        ],
-      },
-      {
-        title: "متجر كامل",
-        desc: "واجهة المتجر، وصفحات المنتجات، وخطوات الدفع.",
-        suffix: "/سعر ثابت",
-        addon: "طبقة الحركة و WebGL",
-        addonAria: "إضافة طبقة الحركة و WebGL",
-        features: [
-          "نظام تصميم ومكتبة مكوّنات",
-          "قوالب لصفحات المنتجات",
-          "تحسين السلة وصفحة الدفع",
-          "دعم لمدة 6 أسابيع بعد الإطلاق",
-        ],
-      },
-    ],
-  },
   testimonials: {
     title: { before: "أرقام، مش ", accent: "كلام حلو." },
     dotLabel: (i) => `انتقل للرأي رقم ${i}`,
@@ -468,37 +351,10 @@ const ar: Dict = {
     },
     figureAlt: "موقع لعميل على شاشة لابتوب",
   },
-  blueprint: {
-    eyebrow: "004 — خطة الشغل",
-    title: { before: "حسّن نتايج إعلاناتك في ", accent: "3 خطوات بسيطة." },
-    steps: [
-      {
-        title: "اتجاه واضح من أول مرة",
-        body: "مود بورد واحد، وتلات اتجاهات واضحة، واختيار واحد. من غير لفّ ودوران ولا تشتيت.",
-        alt: "الاتجاه المختار متطبّق على صفحة منتج",
-      },
-      {
-        title: "إعلان يوقّف السكرول",
-        body: "الصفحة والإعلان بيتعملوا كنظام واحد، فاللي وعدت بيه في الإعلان بيفضل موجود بعد الضغطة.",
-        alt: "إعلان معمول من تصميم الموقع",
-      },
-      {
-        title: "رحلة واحدة، متقاسة من الأول للآخر",
-        body: "الدخول، الاهتمام، الثقة، الشراء — كل خطوة متتبّعة، فأي تعديل جاي يبقى مبني على أرقام مش على رأي.",
-        alt: "داشبورد تحليلات رحلة البيع لعميل",
-      },
-    ],
-    chips: ["شكل تحريري", "تجربة سلسة", "عرض جذّاب"],
-    adPills: ["يوقّف السكرول", "يحوّل", "اشتري دلوقتي"],
-    funnel: ["الدخول", "الاهتمام", "الثقة", "الشراء"],
-    status: "الرحلة متظبطة",
-    statusChip: "ضغطة ← الدفع",
-  },
   ready: {
     eyebrow: "005 — جاهز تكبر",
     title: { before: "موقعك الجاي لازم ", accent: "يجيب تمنه." },
-    body: "فيه مكانين بس متاحين كل شهر. ابعت الفورم، نتكلم 20 دقيقة، وهتاخد خطة واضحة سواء اشتغلنا مع بعض أو لأ.",
-    collageAlts: ["مجموعة من مواقع العملاء، الأولى", "مجموعة من مواقع العملاء، التانية", "مجموعة من مواقع العملاء، التالتة"],
+    body: "فيه مكانين بس متاحين كل شهر. ابعتلي على واتساب، نتكلم 20 دقيقة، وهتاخد خطة واضحة سواء اشتغلنا مع بعض أو لأ.",
   },
   faq: {
     eyebrow: "006 — أسئلة متكررة",
