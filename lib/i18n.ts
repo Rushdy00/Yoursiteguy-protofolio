@@ -62,7 +62,7 @@ const en: Dict = {
   menu: { open: "Open menu", close: "Close menu", label: "Menu" },
   sound: { on: "Sound on", off: "Sound off", aria: "Toggle motion sound" },
   cta: {
-    apply: "Message me on WhatsApp",
+    apply: "Message us on WhatsApp",
     steps: ["Quick message", "Quick call", "More sales"],
     scarcity: "Message now — only a few slots remaining",
   },
@@ -169,20 +169,20 @@ const en: Dict = {
   ready: {
     eyebrow: "005 — Ready to scale",
     title: { before: "Your next site should pay for ", accent: "itself." },
-    body: "Two build slots open each month. Message me on WhatsApp, we talk for twenty minutes, and you get a plan whether or not you hire me.",
+    body: "Two build slots open each month. Message us on WhatsApp, we talk for twenty minutes, and you get a plan whether or not you hire us.",
   },
   faq: {
     eyebrow: "006 — FAQ",
     title: { before: "Common ", accent: "questions" },
-    intro: "If yours isn't here, email me — you'll get an answer from me, not a form response.",
+    intro: "If yours isn't here, email us — you'll get an answer from the team, not a form response.",
     items: [
       {
         q: "How fast do you launch the website?",
-        a: "Within two weeks at most, depending on the project. The scope is fixed before we start and there's no handoff layer — one person designs and builds, so nothing waits in a queue.",
+        a: "Within two weeks at most, depending on the project. The scope is fixed before we start and there's no agency handoff layer — our own in-house team designs and builds together, so nothing waits in a queue.",
       },
       {
         q: "Do you write the copy?",
-        a: "I write the structure, headlines, and offer framing. If you have a copywriter, they work inside that skeleton — it's what makes the page convert.",
+        a: "We write the structure, headlines, and offer framing. If you have a copywriter, they work inside that skeleton — it's what makes the page convert.",
       },
       {
         q: "Which platform do you build on?",
@@ -190,7 +190,7 @@ const en: Dict = {
       },
       {
         q: "Can you work with our in-house team?",
-        a: "Yes — I hand over a documented component library and a Loom walkthrough, so your developers can extend the system without guessing.",
+        a: "Yes — we hand over a documented component library and a Loom walkthrough, so your developers can extend the system without guessing.",
       },
       {
         q: "What do you need from me to start?",
@@ -232,9 +232,9 @@ const ar: Dict = {
   menu: { open: "فتح القائمة", close: "قفل القائمة", label: "القائمة" },
   sound: { on: "الصوت شغّال", off: "الصوت مقفول", aria: "تشغيل أو قفل صوت الحركة" },
   cta: {
-    apply: "كلّمني على واتساب",
+    apply: "كلّمنا على واتساب",
     steps: ["رسالة سريعة", "مكالمة سريعة", "مبيعات أكتر"],
-    scarcity: "كلّمني دلوقتي — الأماكن المتاحة قليلة",
+    scarcity: "كلّمنا دلوقتي — الأماكن المتاحة قليلة",
   },
   hero: {
     eyebrow: "000 — حلول تقنية تكبّر تجارتك الأونلاين",
@@ -340,31 +340,31 @@ const ar: Dict = {
   ready: {
     eyebrow: "005 — جاهز تكبر",
     title: { before: "موقعك الجاي لازم ", accent: "يجيب تمنه." },
-    body: "فيه مكانين بس متاحين كل شهر. ابعتلي على واتساب، نتكلم 20 دقيقة، وهتاخد خطة واضحة سواء اشتغلنا مع بعض أو لأ.",
+    body: "فيه مكانين بس متاحين كل شهر. ابعتلنا على واتساب، نتكلم 20 دقيقة، وهتاخد خطة واضحة سواء اشتغلنا مع بعض أو لأ.",
   },
   faq: {
     eyebrow: "006 — أسئلة متكررة",
     title: { before: "أسئلة ", accent: "بتتكرر" },
-    intro: "لو سؤالك مش موجود هنا، ابعتلي إيميل — الرد هيوصلك منّي أنا شخصيًا، مش رد أوتوماتيك.",
+    intro: "لو سؤالك مش موجود هنا، ابعتلنا إيميل — الرد هيوصلك من الفريق نفسه، مش رد أوتوماتيك.",
     items: [
       {
         q: "الموقع بيجهز في قد إيه؟",
-        a: "في خلال أسبوعين بالكتير، وده بيختلف حسب المشروع. نطاق الشغل بيتحدد قبل ما نبدأ، ومفيش تسليم من فريق لفريق — شخص واحد بيصمّم وبينفّذ، فمفيش حاجة بتستنى في طابور.",
+        a: "في خلال أسبوعين بالكتير، وده بيختلف حسب المشروع. نطاق الشغل بيتحدد قبل ما نبدأ، ومفيش تسليم لشركة تانية — فريقنا هو اللي بيصمّم وبينفّذ مع بعض، فمفيش حاجة بتستنى في طابور.",
       },
       {
         q: "إنت اللي بتكتب المحتوى؟",
-        a: "أنا بكتب الهيكل والعناوين وصياغة العرض. لو عندك كاتب محتوى، هيشتغل جوه الهيكل ده — وده اللي بيخلّي الصفحة تبيع.",
+        a: "إحنا بنكتب الهيكل والعناوين وصياغة العرض. لو عندك كاتب محتوى، هيشتغل جوه الهيكل ده — وده اللي بيخلّي الصفحة تبيع.",
       },
       {
         q: "بتشتغل على أنهي منصة؟",
         a: "Shopify للمتاجر، و Webflow لمواقع التسويق، وكود من الصفر لما التفاعل يحتاج كده. المنصة بتمشي ورا الهدف، مش العكس.",
       },
       {
-        q: "ينفع تشتغل مع الفريق الداخلي عندنا؟",
-        a: "أكيد — هسلّمكم مكتبة مكوّنات موثّقة وفيديو شرح، عشان المطوّرين عندكم يقدروا يكمّلوا على النظام من غير تخمين.",
+        q: "ينفع تشتغلوا مع الفريق الداخلي عندنا؟",
+        a: "أكيد — هنسلّمكم مكتبة مكوّنات موثّقة وفيديو شرح، عشان المطوّرين عندكم يقدروا يكمّلوا على النظام من غير تخمين.",
       },
       {
-        q: "محتاج منّي إيه عشان نبدأ؟",
+        q: "محتاجين منّي إيه عشان نبدأ؟",
         a: "ملفات البراند، وصور المنتجات، وشخص واحد صاحب قرار في المكالمة. بس كده فعلًا.",
       },
     ],
