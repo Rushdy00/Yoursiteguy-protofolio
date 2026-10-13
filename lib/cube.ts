@@ -270,7 +270,8 @@ export async function createCube(canvas: HTMLCanvasElement, opts: Options): Prom
     }
 
     // weaves left↔right a few times while descending once over the page
-    const tx = Math.sin(g * Math.PI * 2.6 + 0.5) * cfg.driftX;
+    // phase keeps the cube off to the side while the problem / ready CTA buttons are on screen (g ≈ 0.55–0.82)
+    const tx = Math.sin(g * Math.PI * 2.6 - 0.88) * cfg.driftX;
     const ty = 1.7 - 3.4 * g;
     const tz = -0.3 + Math.sin(g * Math.PI * 3.1) * 0.7;
     const x = spring("x", tx);
