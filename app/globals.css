@@ -496,7 +496,7 @@ html.lenis, html.lenis body { height: auto; }
 .slide-site { display: flex; flex-direction: column; }
 .slide-site .slide-imgs { flex: 1; min-height: 0; }
 .slide-site .slide-imgs img:only-child { aspect-ratio: auto; min-height: 250px; }
-.slide-site .slide-who { margin: 0; }
+.slide-site .slide-who:last-child { margin: 0; }
 .slide-site a.slide-role:hover { color: var(--sage); }
 .slide-quote { margin: 0 0 18px; font-family: var(--serif); font-style: italic; font-size: 19px; line-height: 1.4; }
 .slide-who { margin: 0 0 22px; font-size: 13px; }

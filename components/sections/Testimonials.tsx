@@ -13,7 +13,10 @@ export default function Testimonials({ t }: { t: Dict }) {
       role: text.role,
       quote: text.quote,
       images: [{ src: imageFor(site), alt: t.portfolio.cardAlt(site.name) }],
-      metric: { label: text.metric, value: d.value, delta: d.delta, points: d.points },
+      // The site's conversion rate (lib/portfolio.json) replaces the placeholder metric when set.
+      metric: site.conversion
+        ? { label: t.testimonials.conversion, value: site.conversion, delta: site.lift, points: d.points }
+        : { label: text.metric, value: d.value, delta: d.delta, points: d.points },
     };
   });
   // The rest of the portfolio follows as site-only slides (screenshot + link).
@@ -21,6 +24,7 @@ export default function Testimonials({ t }: { t: Dict }) {
     name: p.name,
     images: [{ src: imageFor(p), alt: t.portfolio.cardAlt(p.name) }],
     link: { href: p.url, label: new URL(p.url).hostname.replace(/^www\./, "") },
+    metric: p.conversion ? { label: t.testimonials.conversion, value: p.conversion, delta: p.lift } : undefined,
   }));
   const slides = [...withQuote, ...rest];
   const dotLabels = slides.map((_, i) => t.testimonials.dotLabel(i + 1));

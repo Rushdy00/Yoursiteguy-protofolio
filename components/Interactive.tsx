@@ -103,7 +103,7 @@ export type Slide = {
   link?: { href: string; label: string };
   role?: string;
   quote?: string;
-  metric?: { label: string; value: string; delta: string; points: string };
+  metric?: { label: string; value: string; delta?: string; points?: string };
 };
 
 export function Carousel({ slides, dotLabels }: { slides: Slide[]; dotLabels: string[] }) {
@@ -198,11 +198,13 @@ export function Carousel({ slides, dotLabels }: { slides: Slide[]; dotLabels: st
                 </p>
                 <p className="metric-row">
                   <span className="metric-value">{t.metric.value}</span>
-                  <span className="metric-delta">{t.metric.delta}</span>
+                  {t.metric.delta && <span className="metric-delta">{t.metric.delta}</span>}
                 </p>
+                {t.metric.points && (
                 <svg viewBox="0 0 120 30" width="100%" height="26" aria-hidden="true">
                   <polyline points={t.metric.points} fill="none" stroke="#2C332F" strokeWidth="2" />
                 </svg>
+                )}
               </div>
               )}
             </article>

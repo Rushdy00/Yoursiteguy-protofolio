@@ -6,8 +6,11 @@ import list from "./portfolio.json";
 // Screenshots are captured automatically by scripts/screenshots.mjs
 // (run locally with `npm run shots`, or by the GitHub Action on push / weekly).
 // Optional "image": "file.png" (in public/img) overrides the screenshot.
+// Optional "conversion": "3.4%" shows the site's conversion rate on its Receipts slide
+// ("lift": "↗ 40%" adds the green change next to it). TODO: the current values are PLACEHOLDERS, not measured —
+// replace them with each store's real figure.
 
-export type PortfolioItem = { name: string; url: string; image?: string };
+export type PortfolioItem = { name: string; url: string; image?: string; conversion?: string; lift?: string };
 
 export const PORTFOLIO: PortfolioItem[] = list;
 

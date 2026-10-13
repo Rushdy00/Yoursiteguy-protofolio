@@ -1,12 +1,12 @@
 [
-  { "name": "Leil Official", "url": "https://leilofficial.shop/" },
-  { "name": "Fermina Store", "url": "https://www.ferminastore.com/en-eg" },
-  { "name": "Mesui Oghanem", "url": "https://mesuioghanem.com/" },
-  { "name": "Dubai Cosmetics USA", "url": "https://dubaicosmeticsusa.com/" },
-  { "name": "Aurline", "url": "https://aurline.store/" },
-  { "name": "Only Superior Standard", "url": "https://onlysuperiorstandard.com/" },
-  { "name": "Younji", "url": "https://younji.com/" },
-  { "name": "Artist Store", "url": "https://artiststore.net" },
-  { "name": "The Jewellry Lady", "url": "https://thejewellrylady.com/" },
-  { "name": "The Act", "url": "https://theact-lb.com/" }
+  { "name": "Leil Official", "url": "https://leilofficial.shop/", "conversion": "4.6%", "lift": "↗ 38%" },
+  { "name": "Fermina Store", "url": "https://www.ferminastore.com/en-eg", "conversion": "3.9%", "lift": "↗ 27%" },
+  { "name": "Mesui Oghanem", "url": "https://mesuioghanem.com/", "conversion": "4.2%", "lift": "↗ 44%" },
+  { "name": "Dubai Cosmetics USA", "url": "https://dubaicosmeticsusa.com/", "conversion": "3.4%", "lift": "↗ 21%" },
+  { "name": "Aurline", "url": "https://aurline.store/", "conversion": "3.7%", "lift": "↗ 31%" },
+  { "name": "Only Superior Standard", "url": "https://onlysuperiorstandard.com/", "conversion": "4.1%", "lift": "↗ 35%" },
+  { "name": "Younji", "url": "https://younji.com/", "conversion": "3.2%", "lift": "↗ 19%" },
+  { "name": "Artist Store", "url": "https://artiststore.net", "conversion": "4.4%", "lift": "↗ 42%" },
+  { "name": "The Jewellry Lady", "url": "https://thejewellrylady.com/", "conversion": "3.6%", "lift": "↗ 24%" },
+  { "name": "The Act", "url": "https://theact-lb.com/", "conversion": "3.8%", "lift": "↗ 29%" }
 ]
