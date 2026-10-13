@@ -150,11 +150,6 @@ const en: Dict = {
         metric: "Revenue per session",
       },
       {
-        quote: '"He found the leak in our funnel before he opened a design file. Then he fixed both."',
-        role: "Owner, Sable",
-        metric: "Subscription signups",
-      },
-      {
         quote: '"Our ad spend finally lands somewhere that sells. Same traffic, very different month."',
         role: "Founder, Lume",
         metric: "Blended ROAS",
@@ -328,11 +323,6 @@ const ar: Dict = {
         quote: "«12 يوم من البداية للإطلاق، والموقع مش شبه أي حد من المنافسين. وده كان المطلوب بالظبط.»",
         role: "مدير التسويق، Norr",
         metric: "الإيراد لكل زيارة",
-      },
-      {
-        quote: "«لقى المشكلة في رحلة البيع قبل ما يفتح أي ملف تصميم. وبعدين صلّح الاتنين.»",
-        role: "صاحبة البراند، Sable",
-        metric: "اشتراكات جديدة",
       },
       {
         quote: "«فلوس الإعلانات أخيرًا بقت بتروح لمكان بيبيع. نفس الزيارات، بس شهر مختلف خالص.»",
