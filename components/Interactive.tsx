@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { prefersReducedMotion } from "@/lib/motion";
+import { ConversionMetric, type ChartData } from "./ConversionChart";
 
 /* ------------------------------------------------ pricing add-on switch */
 
@@ -103,7 +104,7 @@ export type Slide = {
   link?: { href: string; label: string };
   role?: string;
   quote?: string;
-  metric?: { label: string; value: string; delta?: string; points?: string };
+  metric?: { label: string; value: string; delta?: string; points?: string; chart?: ChartData };
 };
 
 export function Carousel({ slides, dotLabels }: { slides: Slide[]; dotLabels: string[] }) {
@@ -190,7 +191,8 @@ export function Carousel({ slides, dotLabels }: { slides: Slide[]; dotLabels: st
                   </a>
                 )}
               </p>
-              {t.metric && (
+              {t.metric?.chart && <ConversionMetric label={t.metric.label} value={t.metric.value} delta={t.metric.delta} chart={t.metric.chart} />}
+              {t.metric && !t.metric.chart && (
               <div className="metric">
                 <p className="metric-label mono">
                   {t.metric.label}

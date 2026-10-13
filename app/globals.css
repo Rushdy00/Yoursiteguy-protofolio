@@ -508,6 +508,22 @@ html.lenis, html.lenis body { height: auto; }
 .metric-value { font-family: var(--display); font-weight: 800; font-size: 30px; letter-spacing: -0.035em; }
 .metric-delta { font-size: 12px; color: var(--success); }
 .metric svg { margin-top: 10px; display: block; }
+/* Conversion chart (components/ConversionChart.tsx). Time always runs left to right. */
+.cv { position: relative; margin-top: 12px; direction: ltr; touch-action: pan-y; }
+.cv svg { margin: 0; width: 100%; height: auto; overflow: visible; }
+.cv-tip {
+  position: absolute;
+  transform: translate(-50%, calc(-100% - 10px));
+  padding: 4px 7px;
+  border-radius: 6px;
+  background: #14181a;
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.cv-caps { margin: 8px 0 0; display: flex; justify-content: space-between; direction: ltr; font-size: 9px; color: var(--muted-2); }
 .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 34px; }
 .carousel-dots button {
   width: 8px;

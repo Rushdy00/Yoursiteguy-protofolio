@@ -24,6 +24,26 @@ export function shotName(url: string) {
   return `${slug}.jpg`;
 }
 
+/**
+ * Before/after-launch trend for the Receipts chart, ending on the site's conversion rate.
+ * Illustrative: shaped from "conversion" and "lift" (no per-week data yet) with a fixed per-site wobble.
+ */
+export function conversionSeries(item: PortfolioItem, n = 12, launch = 3) {
+  const after = parseFloat(item.conversion ?? "");
+  if (!Number.isFinite(after)) return undefined;
+  const lift = parseFloat((item.lift ?? "").replace(/[^\d.]/g, "")) || 0;
+  const before = after / (1 + lift / 100);
+  let seed = [...item.url].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
+  const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 2 ** 32 - 0.5;
+  const series = Array.from({ length: n }, (_, i) => {
+    if (i === n - 1) return after;
+    if (i <= launch) return before * (1 + rnd() * 0.06);
+    const p = (i - launch) / (n - 1 - launch);
+    return (before + (after - before) * (1 - (1 - p) ** 2)) * (1 + rnd() * 0.05);
+  });
+  return { series: series.map((v) => Math.round(v * 100) / 100), launch };
+}
+
 /** Resolved at build time: manual image → captured screenshot → live screenshot service. */
 export function imageFor(item: PortfolioItem) {
   if (item.image) return `/img/${item.image}`;

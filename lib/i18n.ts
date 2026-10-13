@@ -31,7 +31,7 @@ export type Dict = {
   trust: { label: string; statement: Heading; figureAlt: string; projects: string };
   shopifyFeatures: { pill: string; title: Heading; sub: string; items: { title: string; body: string }[] };
   pricing: { pill: string; title: Heading; book: string; plans: [Plan, Plan] };
-  testimonials: { title: Heading; dotLabel: (i: number) => string; conversion: string; items: Testimonial[] };
+  testimonials: { title: Heading; dotLabel: (i: number) => string; conversion: string; chart: { before: string; after: string }; items: Testimonial[] };
   problem: { eyebrow: string; title: Heading; body: { before: string; strong: string; after: string }; figureAlt: string };
   blueprint: {
     eyebrow: string;
@@ -188,6 +188,7 @@ const en: Dict = {
     title: { before: "Receipts, not ", accent: "adjectives." },
     dotLabel: (i) => `Go to testimonial ${i}`,
     conversion: "Conversion rate",
+    chart: { before: "Before", after: "After launch" },
     items: [
       {
         quote: '"We stopped explaining ourselves. The site does it, and the checkout numbers moved in a week."',
@@ -433,6 +434,7 @@ const ar: Dict = {
     title: { before: "أرقام، مش ", accent: "كلام حلو." },
     dotLabel: (i) => `انتقل للرأي رقم ${i}`,
     conversion: "معدل التحويل",
+    chart: { before: "قبل", after: "بعد الإطلاق" },
     items: [
       {
         quote: "«بطّلنا نشرح نفسنا. الموقع بقى بيعمل ده بدالنا، وأرقام الدفع اتحرّكت في أسبوع.»",
