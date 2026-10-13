@@ -28,7 +28,7 @@ export default function Footer({ t }: { t: Dict }) {
           <div className="clocks">
             <div>
               <p className="f-label mono">{f.ourTime}</p>
-              <Clock timeZone="Europe/Lisbon" />
+              <Clock timeZone="Africa/Cairo" />
             </div>
             <div>
               <p className="f-label mono">{f.yourTime}</p>
