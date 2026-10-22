@@ -3,10 +3,10 @@
 
 export const CONTACT_EMAIL = "elsamamr167@gmail.com";
 // Every CTA button opens a WhatsApp chat. Digits only, with country code (no "+", spaces or leading zeros).
-export const WHATSAPP_NUMBER = "201151168110";
+export const WHATSAPP_NUMBER = "201004247113";
 export const APPLY_HREF = `https://wa.me/${WHATSAPP_NUMBER}`;
 // TODO: replace with the real Instagram handle.
-export const INSTAGRAM_HREF = "https://www.instagram.com/yoursiteguy/";
+export const INSTAGRAM_HREF = "https://instagram.com";
 
 // Matches dict.testimonials.items by index. `site` is a lib/portfolio.json url (its screenshot is shown).
 // Names, quotes and metrics are still placeholders.
