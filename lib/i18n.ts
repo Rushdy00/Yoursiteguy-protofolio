@@ -216,7 +216,7 @@ const en: Dict = {
     location: "Location",
     locationValue: "Egypt, Mansoura",
     owner: "Owner",
-    ownerValue: "Islam Amr",
+    ownerValue: "عمرو يوسف علي",
     rights: "All rights reserved.",
     backToTop: "Back to top ↑",
   },
