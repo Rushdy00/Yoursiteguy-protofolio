@@ -52,6 +52,10 @@ export default function Footer({ t }: { t: Dict }) {
               <p className="f-label mono">{f.location}</p>
               <span>{f.locationValue}</span>
             </div>
+            <div>
+              <p className="f-label mono">{f.owner}</p>
+              <span>{f.ownerValue}</span>
+            </div>
           </div>
         </div>
         <div className="footer-bar mono">
