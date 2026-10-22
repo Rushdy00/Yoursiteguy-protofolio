@@ -1,12 +1,12 @@
 // Language-independent data. All wording (both languages) lives in lib/i18n.ts.
 // Items marked "placeholder" in the design handoff are flagged inline.
 
-export const CONTACT_EMAIL = "hello@yoursiteguy.com";
+export const CONTACT_EMAIL = "elsamamr167@gmail.com";
 // Every CTA button opens a WhatsApp chat. Digits only, with country code (no "+", spaces or leading zeros).
-export const WHATSAPP_NUMBER = "201004247113";
+export const WHATSAPP_NUMBER = "201151168110";
 export const APPLY_HREF = `https://wa.me/${WHATSAPP_NUMBER}`;
 // TODO: replace with the real Instagram handle.
-export const INSTAGRAM_HREF = "https://instagram.com";
+export const INSTAGRAM_HREF = "https://www.instagram.com/yoursiteguy/";
 
 // Matches dict.testimonials.items by index. `site` is a lib/portfolio.json url (its screenshot is shown).
 // Names, quotes and metrics are still placeholders.
