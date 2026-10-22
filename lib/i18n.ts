@@ -41,6 +41,8 @@ export type Dict = {
     social: string;
     location: string;
     locationValue: string;
+    owner: string;
+    ownerValue: string;
     rights: string;
     backToTop: string;
   };
@@ -212,7 +214,9 @@ const en: Dict = {
     email: "Email",
     social: "Social",
     location: "Location",
-    locationValue: "Egypt, online with international brands",
+    locationValue: "Egypt, Mansoura",
+    owner: "Owner",
+    ownerValue: "Islam Amr",
     rights: "All rights reserved.",
     backToTop: "Back to top ↑",
   },
@@ -383,7 +387,9 @@ const ar: Dict = {
     email: "الإيميل",
     social: "السوشيال ميديا",
     location: "مكاننا",
-    locationValue: "مصر، وبنشتغل أونلاين مع براندات عالمية",
+    locationValue: "مصر، المنصورة",
+    owner: "المالك",
+    ownerValue: "إسلام عمرو",
     rights: "كل الحقوق محفوظة.",
     backToTop: "ارجع لفوق ↑",
   },
