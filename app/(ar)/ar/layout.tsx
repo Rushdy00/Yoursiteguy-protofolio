@@ -1,11 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import SiteLayout from "@/components/SiteLayout";
-import { dictionaries } from "@/lib/i18n";
+import { siteMetadata } from "@/lib/metadata";
 import "@/app/globals.css";
 
-const t = dictionaries.ar;
-
-export const metadata: Metadata = { ...t.meta, alternates: { languages: { en: "/" } } };
+export const metadata: Metadata = { ...siteMetadata("ar"), alternates: { languages: { en: "/" } } };
 export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
