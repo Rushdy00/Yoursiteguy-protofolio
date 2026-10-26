@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/i18n";
 import { fontClasses } from "@/app/fonts";
+import { Analytics } from "@vercel/analytics/next";
 
 // Hide [data-rv] elements before first paint so reveals don't flash (skipped under reduced motion).
 const revealBoot = `if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('rv-on')`;
@@ -11,7 +12,10 @@ export default function SiteLayout({ locale, children }: { locale: Locale; child
       <head>
         <script dangerouslySetInnerHTML={{ __html: revealBoot }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
