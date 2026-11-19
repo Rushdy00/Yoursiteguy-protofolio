@@ -57,15 +57,14 @@ void main() {
   vCurl = 0.0;
   vec3 P = vec3(position.xy * uSize, 0.0);
 
-  // Cloth ripple: travelling sine waves, strongest at the edges so the image stays legible.
+  // One wave rolling right → left across the card (crests move toward -x as uPhase grows).
+  // Stronger toward the top edge, gentle at the bottom so the image stays legible.
   if (uWave > 0.01) {
-    vec2 c = uv * 2.0 - 1.0;
-    float edge = mix(0.35, 1.0, pow(max(abs(c.x), abs(c.y)), 2.0));
-    float a = uWave * edge;
-    P.y += a * sin(uv.x * 5.5 + uPhase) + a * 0.45 * sin(uv.x * 11.0 - uPhase * 1.3);
-    P.x += a * 0.8 * sin(uv.y * 4.5 + uPhase * 1.15 + 1.7);
-    P.z += a * 1.6 * sin((uv.x + uv.y) * 4.0 + uPhase * 0.9);
-    vShade = 1.0 - 0.08 * (a / max(uWave, 1.0)) * (0.5 + 0.5 * sin((uv.x + uv.y) * 4.0 + uPhase * 0.9));
+    float w = uv.x * 4.0 + uPhase;
+    float a = uWave * mix(0.45, 1.0, uv.y);
+    P.y += a * sin(w);
+    P.z += a * 1.4 * sin(w + 0.8);
+    vShade = 1.0 - 0.06 * (0.5 + 0.5 * sin(w + 0.8));
   }
 
   float R = max(14.0, min(uSize.x, uSize.y) * 0.16);
@@ -359,7 +358,7 @@ export function createFilmGL(
       // Waves: side cards ripple hard, the centred one only a little; flat again at rest.
       const waveSpeed = Math.min(1, speed * 1.6);
       u.uWave.value = (r.w / 396) * (waveSpeed * 26 + enter * 5) * (0.15 + 0.85 * (1 - centre));
-      u.uPhase.value = time * 2.2 + progress * 36 + i * 1.9;
+      u.uPhase.value = progress * 30; // scroll-driven only, same phase for every card
       u.uRGB.value = 0.4 + speed * 2.6 + enter * 1.2;
       c.mesh.position.set(r.x + r.w / 2 - W / 2, H / 2 - (r.y + r.h / 2), 0);
       c.mesh.renderOrder = Math.round(r.u * 100);
