@@ -1,4 +1,4 @@
-import { Amiri, Cairo, DM_Sans, IBM_Plex_Mono, IBM_Plex_Sans_Arabic, Instrument_Serif, Manrope } from "next/font/google";
+import { Amiri, Cairo, DM_Sans, IBM_Plex_Mono, IBM_Plex_Sans_Arabic, Instrument_Serif, Manrope, Onest } from "next/font/google";
 
 // Font stacks in globals.css name these families directly (Latin face first, Arabic second).
 
@@ -11,12 +11,14 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
 });
 const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: "500", variable: "--font-plex-mono" });
+// "Selected work" film strip (.film).
+const onest = Onest({ subsets: ["latin"], weight: ["300", "400", "500"], variable: "--font-onest" });
 
 const cairo = Cairo({ subsets: ["arabic"], weight: ["400", "700", "800"], variable: "--font-cairo" });
 const plexArabic = IBM_Plex_Sans_Arabic({ subsets: ["arabic"], weight: ["400", "500", "700"], variable: "--font-plex-arabic" });
 const amiri = Amiri({ subsets: ["arabic"], weight: ["400", "700"], variable: "--font-amiri" });
 
-const latin = [manrope, dmSans, instrumentSerif, plexMono];
+const latin = [manrope, dmSans, instrumentSerif, plexMono, onest];
 const arabic = [cairo, plexArabic, amiri];
 
 export const fontClasses = {
