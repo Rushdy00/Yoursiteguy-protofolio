@@ -18,6 +18,8 @@ uniform float uFoldA;
 uniform vec2 uDirB;
 uniform float uFoldB;
 uniform float uBend;
+uniform float uWave;  // ripple amplitude in px (scroll-speed driven, 0 at rest)
+uniform float uPhase; // advances with time and scroll so the ripple travels
 varying vec2 vUv;
 varying float vShade;
 varying float vCurl;
@@ -54,6 +56,18 @@ void main() {
   vShade = 1.0;
   vCurl = 0.0;
   vec3 P = vec3(position.xy * uSize, 0.0);
+
+  // Cloth ripple: travelling sine waves, strongest at the edges so the image stays legible.
+  if (uWave > 0.01) {
+    vec2 c = uv * 2.0 - 1.0;
+    float edge = mix(0.35, 1.0, pow(max(abs(c.x), abs(c.y)), 2.0));
+    float a = uWave * edge;
+    P.y += a * sin(uv.x * 5.5 + uPhase) + a * 0.45 * sin(uv.x * 11.0 - uPhase * 1.3);
+    P.x += a * 0.8 * sin(uv.y * 4.5 + uPhase * 1.15 + 1.7);
+    P.z += a * 1.6 * sin((uv.x + uv.y) * 4.0 + uPhase * 0.9);
+    vShade = 1.0 - 0.08 * (a / max(uWave, 1.0)) * (0.5 + 0.5 * sin((uv.x + uv.y) * 4.0 + uPhase * 0.9));
+  }
+
   float R = max(14.0, min(uSize.x, uSize.y) * 0.16);
   fold(P, uDirA, uFoldA, R);
   fold(P, uDirB, uFoldB, R * 1.5);
@@ -250,6 +264,8 @@ export function createFilmGL(
       uDirB: { value: new THREE.Vector2(-1, 0.3) }, // leading (left) edge warps on the way out
       uFoldB: { value: 0 },
       uBend: { value: 0 },
+      uWave: { value: 0 },
+      uPhase: { value: 0 },
       uRGB: { value: 0 },
       uAlpha: { value: 0 },
       uTime: { value: 0 },
@@ -340,6 +356,10 @@ export function createFilmGL(
       u.uFoldA.value = diag * (0.42 * enter + 0.22 * speed * (1 - centre * 0.7));
       u.uFoldB.value = r.w * (0.16 * leave + 0.1 * speed * leave);
       u.uBend.value = vel * 120 * (0.35 + 0.65 * (1 - centre));
+      // Waves: side cards ripple hard, the centred one only a little; flat again at rest.
+      const waveSpeed = Math.min(1, speed * 1.6);
+      u.uWave.value = (r.w / 396) * (waveSpeed * 26 + enter * 5) * (0.15 + 0.85 * (1 - centre));
+      u.uPhase.value = time * 2.2 + progress * 36 + i * 1.9;
       u.uRGB.value = 0.4 + speed * 2.6 + enter * 1.2;
       c.mesh.position.set(r.x + r.w / 2 - W / 2, H / 2 - (r.y + r.h / 2), 0);
       c.mesh.renderOrder = Math.round(r.u * 100);
