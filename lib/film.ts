@@ -2,7 +2,7 @@ import * as THREE from "three";
 
 // WebGL half of the "Selected work" film strip (components/FilmStrip.tsx).
 // The DOM cards own layout, links and captions; this layer redraws each card's image
-// as a curling, RGB-split plane at the card's on-screen rect, plus the blurred petal backdrop.
+// as a curling, RGB-split plane at the card's on-screen rect, plus the greyscale cloud backdrop.
 // Everything is in CSS pixels: the camera is placed so the z = 0 plane maps 1:1 to the stage.
 
 export type FilmCardFrame = { x: number; y: number; w: number; h: number; u: number; alpha: number };
@@ -105,7 +105,7 @@ void main() {
     col.g = texture2D(uTex, cover(vUv)).g;
     col.b = texture2D(uTex, cover(vUv - off)).b;
   } else {
-    col = vec3(0.925, 0.965, 0.95); // paper back of the curled corner
+    col = vec3(0.94, 0.945, 0.943); // paper back of the curled corner
   }
   col *= vShade;
   col += (hash(gl_FragCoord.xy + fract(uTime * 7.0) * 113.0) - 0.5) * 0.035;
@@ -113,73 +113,69 @@ void main() {
 }
 `;
 
-/* ------------------------------------------------------------------ petals */
+/* ------------------------------------------------------------------ clouds */
 
-/** One soft petal on a 2D canvas: rounded crown, pointed cyan tip, blurred by `blur` px. */
-function petalCanvas(blur: number) {
-  const W = 220;
-  const H = 320;
-  const sharp = document.createElement("canvas");
-  sharp.width = W;
-  sharp.height = H;
-  const g = sharp.getContext("2d")!;
-  g.translate(W / 2, H / 2);
-  g.beginPath();
-  g.moveTo(0, 118);
-  g.bezierCurveTo(46, 70, 84, -40, 30, -112);
-  g.bezierCurveTo(4, -136, -40, -128, -62, -92);
-  g.bezierCurveTo(-90, -34, -40, 60, 0, 118);
-  const lg = g.createLinearGradient(-40, -120, 10, 118);
-  lg.addColorStop(0, "rgba(232, 248, 244, 0.95)");
-  lg.addColorStop(0.45, "rgba(178, 232, 222, 0.92)");
-  lg.addColorStop(0.82, "rgba(98, 210, 208, 0.95)");
-  lg.addColorStop(1, "rgba(24, 186, 204, 1)");
-  g.fillStyle = lg;
-  g.fill();
-  // faint vein + crown highlight
-  g.globalCompositeOperation = "source-atop";
-  const rg = g.createRadialGradient(-18, -70, 4, -18, -70, 90);
-  rg.addColorStop(0, "rgba(255,255,255,0.55)");
-  rg.addColorStop(1, "rgba(255,255,255,0)");
-  g.fillStyle = rg;
-  g.fillRect(-W / 2, -H / 2, W, H);
-  g.strokeStyle = "rgba(60, 170, 175, 0.18)";
-  g.lineWidth = 2;
-  g.beginPath();
-  g.moveTo(-6, -100);
-  g.quadraticCurveTo(-4, 20, 0, 112);
-  g.stroke();
-
-  if (blur <= 0) return sharp;
+/** Blur a canvas by `blur` px (canvas filter, or shrink-and-scale on browsers without it). */
+function blurred(src: HTMLCanvasElement, blur: number) {
   const out = document.createElement("canvas");
-  out.width = W;
-  out.height = H;
+  out.width = src.width;
+  out.height = src.height;
   const o = out.getContext("2d")!;
   if (typeof o.filter === "string") {
     o.filter = `blur(${blur}px)`;
-    o.drawImage(sharp, 0, 0);
+    o.drawImage(src, 0, 0);
     return out;
   }
-  // No canvas filter (older Safari): blur by shrinking and scaling back up.
-  const k = Math.max(0.06, 1 / (1 + blur / 2));
+  const k = Math.max(0.05, 1 / (1 + blur / 2));
   const small = document.createElement("canvas");
-  small.width = Math.ceil(W * k);
-  small.height = Math.ceil(H * k);
+  small.width = Math.ceil(src.width * k);
+  small.height = Math.ceil(src.height * k);
   const s = small.getContext("2d")!;
   s.imageSmoothingQuality = "high";
-  s.drawImage(sharp, 0, 0, small.width, small.height);
+  s.drawImage(src, 0, 0, small.width, small.height);
   o.imageSmoothingQuality = "high";
-  o.drawImage(small, 0, 0, W, H);
+  o.drawImage(small, 0, 0, out.width, out.height);
   return out;
 }
 
-type Petal = {
+/** A soft grey cloud bank: overlapping puffs on a flat base, lit from above, then blurred. */
+function cloudCanvas(seed: number, blur: number) {
+  const W = 640;
+  const H = 300;
+  const c = document.createElement("canvas");
+  c.width = W;
+  c.height = H;
+  const g = c.getContext("2d")!;
+  const rnd = seeded(seed);
+  const base = H * 0.78;
+  const shade = g.createLinearGradient(0, H * 0.15, 0, base);
+  shade.addColorStop(0, "rgba(252, 252, 252, 1)");
+  shade.addColorStop(0.55, "rgba(218, 221, 220, 1)");
+  shade.addColorStop(1, "rgba(160, 165, 164, 1)");
+  g.fillStyle = shade;
+  g.beginPath();
+  const n = 9;
+  for (let i = 0; i < n; i++) {
+    const t = (i + 0.5) / n;
+    const x = 70 + t * (W - 140) + (rnd() - 0.5) * 30;
+    const hump = Math.sin(t * Math.PI); // taller in the middle
+    const r = (34 + rnd() * 30) * (0.6 + hump * 0.9);
+    const y = base - r * (0.55 + rnd() * 0.35);
+    g.moveTo(x + r, y);
+    g.arc(x, y, r, 0, Math.PI * 2);
+  }
+  g.rect(60, base - 40, W - 120, 40); // flat underside
+  g.fill();
+  return blurred(c, blur);
+}
+
+type Cloud = {
   mesh: THREE.Mesh;
-  bx: number; // base position, fraction of stage
-  by: number;
-  size: number; // fraction of the stage's shorter side
-  rot: number;
-  depth: number; // parallax factor; also picks the blur tier
+  bx: number; // base x, fraction of stage width
+  top: boolean; // top bank (flipped, hangs down) or bottom bank
+  y: number; // centre offset from its edge, fraction of stage height
+  width: number; // fraction of stage width
+  depth: number; // parallax factor
   phase: number;
 };
 
@@ -210,43 +206,41 @@ export function createFilmGL(
   let W = 1;
   let H = 1;
 
-  /* petals */
+  /* clouds: greyscale banks along the top and bottom edges (the CSS fade blends them into the page) */
   const mobile = window.matchMedia("(max-width: 767px)").matches;
-  const petalTex = [petalCanvas(11), petalCanvas(5), petalCanvas(1.2)].map((c) => {
+  const cloudTex = [cloudCanvas(11, 16), cloudCanvas(23, 10), cloudCanvas(37, 22)].map((c) => {
     const t = new THREE.CanvasTexture(c);
     t.anisotropy = 4;
     return t;
   });
-  const petalGeo = new THREE.PlaneGeometry(1, 1);
+  const cloudGeo = new THREE.PlaneGeometry(1, 1);
   const rnd = seeded(20261119);
-  const petals: Petal[] = [];
-  const count = mobile ? 14 : 26;
-  for (let i = 0; i < count; i++) {
-    // Scattered along the bottom-left → top-right diagonal, with wide perpendicular jitter.
-    const t = rnd() * 1.4 - 0.2;
-    const j = (rnd() - 0.5) * 0.9;
-    const depth = 0.35 + rnd() * 0.9;
-    const tier = depth > 1.0 ? 2 : depth > 0.65 ? 1 : 0;
-    const mat = new THREE.MeshBasicMaterial({
-      map: petalTex[tier],
-      transparent: true,
-      depthTest: false,
-      depthWrite: false,
-      opacity: tier === 2 ? 0.85 : tier === 1 ? 0.65 : 0.45,
-    });
-    const mesh = new THREE.Mesh(petalGeo, mat);
-    mesh.renderOrder = -1000 + Math.round(depth * 100);
-    scene.add(mesh);
-    petals.push({
-      mesh,
-      bx: t + j * 0.5,
-      by: 1 - t + j * 0.5,
-      size: (0.12 + rnd() * 0.16) * (0.7 + depth * 0.5),
-      rot: rnd() * Math.PI * 2,
-      depth,
-      phase: rnd() * Math.PI * 2,
-    });
-  }
+  const clouds: Cloud[] = [];
+  const perBank = mobile ? 3 : 5;
+  [true, false].forEach((top) => {
+    for (let k = 0; k < perBank; k++) {
+      const depth = 0.4 + rnd() * 0.6;
+      const mat = new THREE.MeshBasicMaterial({
+        map: cloudTex[Math.floor(rnd() * cloudTex.length)],
+        transparent: true,
+        depthTest: false,
+        depthWrite: false,
+        opacity: 0.6 + depth * 0.35,
+      });
+      const mesh = new THREE.Mesh(cloudGeo, mat);
+      mesh.renderOrder = -1000 + Math.round(depth * 100);
+      scene.add(mesh);
+      clouds.push({
+        mesh,
+        bx: ((k + rnd() * 0.7) / perBank) * 1.8 - 0.4,
+        top,
+        y: 0.05 + rnd() * 0.12,
+        width: (mobile ? 1.1 : 0.55) + rnd() * (mobile ? 0.5 : 0.35),
+        depth,
+        phase: rnd() * Math.PI * 2,
+      });
+    }
+  });
 
   /* cards */
   const cardGeo = new THREE.PlaneGeometry(1, 1, 48, 36);
@@ -323,18 +317,18 @@ export function createFilmGL(
   const frame = ({ cards: rects, vel, progress, time }: FilmFrame) => {
     const speed = Math.min(1, Math.abs(vel));
 
-    const S = Math.min(W, H);
-    const rangeY = H * 1.7;
-    petals.forEach((p, i) => {
-      // Drift up-right as the strip runs down-left; nearer petals travel further.
-      let x = p.bx * W + progress * W * 0.3 * p.depth + Math.sin(time * 0.21 + p.phase) * 14;
-      let y = p.by * H - progress * H * 1.1 * p.depth + Math.cos(time * 0.17 + p.phase) * 10;
-      y = ((((y + H * 0.35) % rangeY) + rangeY) % rangeY) - H * 0.35;
-      x = ((((x + W * 0.25) % (W * 1.5)) + W * 1.5) % (W * 1.5)) - W * 0.25;
-      const sz = p.size * S * 1.6;
-      p.mesh.position.set(x - W / 2, H / 2 - y, 0);
-      p.mesh.scale.set(sz * 0.69, sz, 1);
-      p.mesh.rotation.z = p.rot + Math.sin(time * 0.3 + i) * 0.08 + vel * 0.15 * p.depth;
+    const span = W * 1.8;
+    clouds.forEach((c) => {
+      // Slow drift: top bank to the right, bottom bank to the left; nearer clouds move further.
+      const dir = c.top ? 1 : -1;
+      let x = c.bx * W + dir * (progress * W * 0.45 * c.depth + time * 4 * c.depth) + Math.sin(time * 0.1 + c.phase) * 8;
+      x = ((((x + W * 0.4) % span) + span) % span) - W * 0.4;
+      const w = c.width * W;
+      const h = w * (300 / 640);
+      const lift = progress * H * 0.04 * c.depth; // a touch of vertical parallax
+      const y = c.top ? c.y * H + h * 0.12 - lift : H - c.y * H - h * 0.12 + lift;
+      c.mesh.position.set(x - W / 2, H / 2 - y, 0);
+      c.mesh.scale.set(w, c.top ? -h : h, 1); // top bank flipped so the puffs hang down
     });
 
     rects.forEach((r, i) => {
@@ -373,10 +367,10 @@ export function createFilmGL(
       c.tex?.dispose();
       (c.mesh.material as THREE.Material).dispose();
     });
-    petals.forEach((p) => (p.mesh.material as THREE.Material).dispose());
-    petalTex.forEach((t) => t.dispose());
+    clouds.forEach((c) => (c.mesh.material as THREE.Material).dispose());
+    cloudTex.forEach((t) => t.dispose());
     cardGeo.dispose();
-    petalGeo.dispose();
+    cloudGeo.dispose();
     renderer.dispose();
     renderer.forceContextLoss();
   };
