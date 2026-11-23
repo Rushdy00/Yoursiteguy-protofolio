@@ -10,9 +10,22 @@ import list from "./portfolio.json";
 // ("lift": "↗ 40%" adds the green change next to it). TODO: the current values are PLACEHOLDERS, not measured —
 // replace them with each store's real figure.
 
-export type PortfolioItem = { name: string; url: string; image?: string; conversion?: string; lift?: string };
+// Optional "tags": ["design", "development"] drives the "Selected work" filter pills and captions
+// (labels live in lib/i18n.ts → portfolio.tagLabels). Items without tags get both.
+
+export type PortfolioItem = {
+  name: string;
+  url: string;
+  image?: string;
+  conversion?: string;
+  lift?: string;
+  tags?: string[];
+};
 
 export const PORTFOLIO: PortfolioItem[] = list;
+
+export const DEFAULT_TAGS = ["design", "development"];
+export const tagsFor = (item: PortfolioItem) => item.tags ?? DEFAULT_TAGS;
 
 /** File name for a site's screenshot. Keep in sync with scripts/screenshots.mjs. */
 export function shotName(url: string) {

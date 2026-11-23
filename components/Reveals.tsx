@@ -15,7 +15,6 @@ export default function Reveals() {
       return;
     }
     const els = Array.from(document.querySelectorAll<HTMLElement>("[data-rv]"));
-    const inPortfolio = (el: HTMLElement) => !!el.closest("#portfolio") && !el.hasAttribute("data-pc");
     const done = new Set<HTMLElement>();
 
     const show = (el: HTMLElement) => {
@@ -23,16 +22,9 @@ export default function Reveals() {
       done.add(el);
       io.unobserve(el);
       const i = els.indexOf(el);
-      if (inPortfolio(el)) {
-        const d = (i % 5) * 100;
-        const e = `900ms var(--ease-portfolio) ${d}ms`;
-        el.style.transition = `transform ${e}, opacity ${e}, filter ${e}`;
-        el.style.filter = "blur(0px)";
-      } else {
-        const d = (i % 4) * 60;
-        const e = `800ms var(--ease-out-expo) ${d}ms`;
-        el.style.transition = `transform ${e}, opacity ${e}`;
-      }
+      const d = (i % 4) * 60;
+      const e = `800ms var(--ease-out-expo) ${d}ms`;
+      el.style.transition = `transform ${e}, opacity ${e}`;
       el.style.opacity = "1";
       el.style.transform = "translate3d(0,0,0)";
     };

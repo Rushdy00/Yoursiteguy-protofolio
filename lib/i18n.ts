@@ -27,7 +27,15 @@ export type Dict = {
   sound: { on: string; off: string; aria: string };
   cta: { apply: string; steps: [string, string, string]; scarcity: string };
   hero: { eyebrow: string; title: Heading; tagline?: string; sub?: string; shopify?: { line: Heading; badgeAlt: string } };
-  portfolio: { pill: string; title: Heading; intro: (count: number) => string; explore: string; cardAlt: (name: string) => string; arrow: string; exploreArrow: string };
+  portfolio: {
+    title: string;
+    filterLabel: string;
+    /** First entry matches every project; the rest match a lib/portfolio.json tag key. */
+    filters: { key: string; label: string }[];
+    tagLabels: Record<string, string>;
+    cardAlt: (name: string) => string;
+    arrow: string;
+  };
   shopifyFeatures: { pill: string; title: Heading; sub: string; items: { title: string; body: string }[] };
   testimonials: { title: Heading; dotLabel: (i: number) => string; conversion: string; chart: { before: string; after: string }; items: Testimonial[] };
   problem: { eyebrow: string; title: Heading; body: { before: string; strong: string; after: string }; badgeAlts: [string, string] };
@@ -77,16 +85,16 @@ const en: Dict = {
     },
   },
   portfolio: {
-    pill: "002 — Portfolio",
-    title: { before: "Engineered for ", accent: "conversions" },
-    intro: (n) => {
-      const words = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
-      return `${words[n] ?? n} builds, one pattern: strip the friction, sharpen the offer, let the design carry the argument. Every site below shipped fast.`;
-    },
-    explore: "Explore full portfolio",
+    title: "Selected work",
+    filterLabel: "Filter projects",
+    filters: [
+      { key: "all", label: "All" },
+      { key: "design", label: "Design" },
+      { key: "development", label: "Development" },
+    ],
+    tagLabels: { design: "Web design", development: "Development" },
     cardAlt: (name) => `${name} website`,
     arrow: "↗",
-    exploreArrow: "→",
   },
   shopifyFeatures: {
     pill: "Why Shopify",
@@ -251,15 +259,16 @@ const ar: Dict = {
     },
   },
   portfolio: {
-    pill: "002 — شغلنا",
-    title: { before: "معمولة عشان ", accent: "تبيع" },
-    // 3–10 → مشاريع, 11+ → مشروع (Egyptian usage).
-    intro: (n) =>
-      `${n <= 10 ? `${n} مشاريع` : `${n} مشروع`}، والطريقة واحدة: نشيل أي حاجة بتعطّل العميل، نقوّي العرض، ونسيب التصميم هو اللي يقنع. كل موقع هنا اتسلّم بسرعة.`,
-    explore: "شوف كل الشغل",
+    title: "شغل مختار",
+    filterLabel: "فلترة المشاريع",
+    filters: [
+      { key: "all", label: "الكل" },
+      { key: "design", label: "تصميم" },
+      { key: "development", label: "برمجة" },
+    ],
+    tagLabels: { design: "تصميم مواقع", development: "برمجة" },
     cardAlt: (name) => `موقع ${name}`,
     arrow: "↖",
-    exploreArrow: "←",
   },
   shopifyFeatures: {
     pill: "ليه شوبيفاي",

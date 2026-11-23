@@ -68,7 +68,6 @@ html.lenis, html.lenis body { height: auto; }
 
 /* Scroll reveals: hidden before JS shows them (class set in <head>, skipped under reduced motion). */
 .rv-on [data-rv] { opacity: 0; transform: translate3d(0, 24px, 0); will-change: transform, opacity; }
-.rv-on #portfolio [data-rv]:not([data-pc]) { transform: translate3d(0, 28px, 0); filter: blur(10px); }
 
 /* ------------------------------------------------------------------ type helpers */
 .mono { font-family: var(--mono); font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em; }
@@ -110,7 +109,8 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* ------------------------------------------------------------------ global layers */
-.page { position: relative; width: 100%; background: var(--bg); overflow-x: hidden; }
+/* clip, not hidden: hidden makes .page a scroll container and breaks position: sticky (film strip). */
+.page { position: relative; width: 100%; background: var(--bg); overflow-x: hidden; overflow-x: clip; }
 
 .cube-canvas {
   position: fixed;
@@ -302,78 +302,144 @@ html.lenis, html.lenis body { height: auto; }
 .hero-shopify-line { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(18px, 2vw, 26px); line-height: 1.5; }
 .hero-shopify-img { display: block; margin: 24px auto 0; width: min(100%, 460px); height: auto; }
 
-/* ------------------------------------------------------------------ portfolio */
-.explore { display: inline-flex; align-items: center; gap: 14px; font-size: 11px; color: var(--sage); }
-.explore:hover { color: var(--sage); }
-.explore-arrow {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  border: 1px solid var(--sage);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-/* Full-bleed: cancel the section padding, keep a small gutter around the cards. */
-.pgrid {
-  --pgap: clamp(10px, 1.2vw, 20px);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--pgap);
-  margin-inline: calc(var(--pgap) - var(--px));
-}
-.pcol { display: flex; flex-direction: column; gap: var(--pgap); will-change: transform; }
-.pcol-b { padding-top: clamp(0px, 12vw, 180px); }
-.pcard {
+/* ------------------------------------------------------------------ selected work (film strip) */
+/* Static staggered grid by default (also the reduced-motion view); the pinned 3D path is
+   switched on below for prefers-reduced-motion: no-preference. */
+.film {
+  --film-ink: #111;
+  --film-font: "Onest", "Hanken Grotesk", "IBM Plex Sans Arabic", sans-serif;
   position: relative;
-  display: block;
-  border-radius: 20px;
-  overflow: hidden;
-  background: var(--surface-2);
-  aspect-ratio: 4 / 3;
+  isolation: isolate; /* card z-indexes stay inside the section, under the fixed header */
+  font-family: var(--film-font);
+  color: var(--film-ink);
+  background: linear-gradient(165deg, #f7fcfa 0%, #eef8f5 55%, #f2faf7 100%);
 }
-.pcard img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 800ms var(--ease-portfolio);
+.film-stage { position: relative; padding: 12vh var(--px); }
+.film-canvas { display: none; }
+.film-head { text-align: center; margin-bottom: 56px; }
+.film-head h2 {
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(42px, 6vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: var(--film-ink);
 }
-.pcard-shade {
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 45%;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
-  pointer-events: none;
+.film-pills { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-top: 16px; }
+.film-pill {
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.2;
+  padding: 5px 12px;
+  border: 0;
+  border-radius: 99px;
+  background: transparent;
+  color: var(--film-ink);
+  cursor: pointer;
+  transition: background 250ms ease, color 250ms ease;
 }
-.pcard-name {
-  position: absolute;
-  inset-inline-start: 20px;
-  bottom: 18px;
-  color: #fff;
-  font-size: 11px;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+.film-pill sup { font-size: 0.68em; margin-inline-start: 2px; opacity: 0.7; }
+.film-pill[aria-pressed="true"] { background: var(--film-ink); color: #fff; }
+.film-pill:focus-visible { outline: 2px solid var(--film-ink); outline-offset: 2px; }
+.film-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
 }
-.pcard-arrow {
-  position: absolute;
-  inset-inline-end: 18px;
-  bottom: 16px;
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(6px);
-  color: #000;
+.film-col .film-card:nth-child(even) { margin-top: 48px; }
+.film-card { display: block; color: var(--film-ink); outline: none; }
+.film-card[data-out] { display: none; }
+.film-card:hover { color: var(--film-ink); }
+.film-media { display: block; aspect-ratio: 396 / 285; overflow: hidden; background: #dcece7; }
+.film-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.film-card:focus-visible .film-media { outline: 2px solid var(--film-ink); outline-offset: 3px; }
+.film-cap {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 300ms ease, color 300ms ease, transform 300ms ease;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.3;
 }
-.pcard:hover img, .pcard:focus img { transform: scale(1.04); }
-.pcard:hover .pcard-arrow, .pcard:focus .pcard-arrow { background: #fff; transform: scale(1.1) translate(2px, -2px); }
+.film-cap-name { display: block; font-weight: 500; }
+.film-cap-tags { display: block; font-weight: 300; color: rgba(17, 17, 17, 0.62); }
+.film-arrow { flex: none; font-size: 15px; line-height: 1.3; }
+.film-grain { display: none; }
+.film-after .testimonials { margin-top: 0; }
+html[lang="ar"] .film-head h2 { letter-spacing: 0; line-height: 1.3; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .film { height: var(--film-h, 460vh); }
+  .film-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    padding: 0;
+    overflow: hidden;
+  }
+  .film-canvas { display: block; position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+  .film-head { position: absolute; top: 100px; inset-inline: 0; margin: 0; z-index: 2000; pointer-events: none; }
+  .film-pills { pointer-events: auto; background: rgba(247, 252, 250, 0.6); border-radius: 99px; padding: 3px; backdrop-filter: blur(8px); }
+  /* White fade at the top and bottom so the mint/petal backdrop melts into the page background. */
+  .film-stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      var(--bg) 0%,
+      rgba(250, 252, 251, 0.6) 8%,
+      rgba(250, 252, 251, 0) 22%,
+      rgba(250, 252, 251, 0) 78%,
+      rgba(250, 252, 251, 0.6) 92%,
+      var(--bg) 100%
+    );
+  }
+  .film-col { position: absolute; inset: 0; display: block; max-width: none; z-index: 2; }
+  .film-col .film-card:nth-child(n) { margin: 0; }
+  .film-card,
+  .film-card[data-out] {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--cw, 396px);
+    transform-origin: 0 0;
+    opacity: 0; /* JS places and reveals each card */
+    will-change: transform, opacity;
+  }
+  /* The WebGL plane draws the image once its texture is ready; the <img> stays for a11y/SEO. */
+  .film-card.is-gl .film-media { background: transparent; }
+  .film-card.is-gl .film-media img { opacity: 0; }
+  .film-cap { opacity: 0; transform: translate3d(0, 6px, 0); transition: opacity 400ms ease, transform 500ms var(--ease-out-expo); }
+  .film-card:hover .film-cap,
+  .film-card:focus-visible .film-cap,
+  .film-card.is-center .film-cap { opacity: 1; transform: none; }
+  .film-grain {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 2100;
+    pointer-events: none;
+    opacity: 0.025; /* on top of the page-wide .grain */
+    mix-blend-mode: multiply;
+    background: url(/img/grain-anim.gif) repeat;
+    background-size: 320px 240px;
+  }
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 767px) {
+  .film-head { top: 84px; }
+  .film-head h2 { font-size: 42px; }
+}
 
 /* ------------------------------------------------------------------ testimonials */
-/* Lives inside #portfolio: cancel the section padding (full-bleed) and clear the parallax travel. */
+/* Cancels the section padding (full-bleed). */
 .testimonials { margin: clamp(12vh, 24vw, 300px) calc(-1 * var(--px)) 0; }
 .testimonials h2 { margin: 0 0 6vh; font-size: clamp(30px, 4vw, 56px); line-height: 0.98; }
 .carousel { overflow: hidden; padding: 0 var(--px); cursor: grab; touch-action: pan-y; }
@@ -616,6 +682,5 @@ html[lang="ar"] .m-item:not(.m-mail) { line-height: 1.45; }
 html[lang="ar"] .trust-statement { line-height: 1.6; }
 html[lang="ar"] .accent { font-style: normal; }
 html[lang="ar"] .hero-tagline, html[lang="ar"] .slide-quote { font-style: normal; }
-[dir="rtl"] .pcard:hover .pcard-arrow, [dir="rtl"] .pcard:focus .pcard-arrow { transform: scale(1.1) translate(-2px, -2px); }
 @keyframes ysgMarqueeRtl { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(50%, 0, 0); } }
 [dir="rtl"] .marquee-track { animation-name: ysgMarqueeRtl; }
