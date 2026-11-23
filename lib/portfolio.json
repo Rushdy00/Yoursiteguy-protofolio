@@ -1,6 +1,6 @@
 [
-  { "name": "ELVN", "url": "https://elvnnn.com/" },
-  { "name": "Femme Accessories", "url": "https://femmeaccessories-eg.com/" },
+  { "name": "ELVN", "url": "https://elvnnn.com/", "conversionSlide": false },
+  { "name": "Femme Accessories", "url": "https://femmeaccessories-eg.com/", "conversionSlide": false },
   { "name": "Leil Official", "url": "https://leilofficial.shop/", "conversion": "4.6%", "lift": "↗ 38%" },
   { "name": "Fermina Store", "url": "https://www.ferminastore.com/en-eg", "conversion": "3.9%", "lift": "↗ 27%" },
   { "name": "Dubai Cosmetics USA", "url": "https://dubaicosmeticsusa.com/", "conversion": "3.4%", "lift": "↗ 21%" },

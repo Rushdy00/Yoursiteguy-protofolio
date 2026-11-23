@@ -20,6 +20,8 @@ export type PortfolioItem = {
   conversion?: string;
   lift?: string;
   tags?: string[];
+  /** false keeps the site out of the conversion-rate carousel (Testimonials); it still shows in "Selected work". */
+  conversionSlide?: boolean;
 };
 
 export const PORTFOLIO: PortfolioItem[] = list;

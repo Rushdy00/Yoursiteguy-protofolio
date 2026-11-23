@@ -22,7 +22,9 @@ export default function Testimonials({ t }: { t: Dict }) {
     };
   });
   // The rest of the portfolio follows as site-only slides (screenshot + link).
-  const rest: Slide[] = PORTFOLIO.filter((p) => !TESTIMONIAL_DATA.some((d) => d.site === p.url)).map((p) => ({
+  const rest: Slide[] = PORTFOLIO.filter(
+    (p) => p.conversionSlide !== false && !TESTIMONIAL_DATA.some((d) => d.site === p.url),
+  ).map((p) => ({
     name: p.name,
     images: [{ src: imageFor(p), alt: t.portfolio.cardAlt(p.name) }],
     link: { href: p.url, label: new URL(p.url).hostname.replace(/^www\./, "") },
